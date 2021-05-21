@@ -17,6 +17,20 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.25</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-tools-maven-plugin</artifactId>
+			<version>5.4.31.Final</version>
+			<type>maven-plugin</type>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
