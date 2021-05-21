@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
     <div class="Top">
         <div class="menu">
             <ul>
-                <li class="logo"><img src="./css/img/navigation.png"><h1 class="logo-nome">Next Point</h1></li>              
+                <li class="logo"><img src="./css/img/navigation.png"><h1 class="logo-nome">Next Point</h1></li>
             </ul>
             <ul>
                 <li><a class="letter" href="/home" ><b>HOME</b></a></li>
@@ -24,35 +24,35 @@
             </ul>
         </div>
         <div class="body">
-            <div class="Form-box">   
+            <div class="Form-box">
                 <div class="btn-box">
                     <div id="btn"></div>
                     <button type="button" class="Press-btn" onclick="Login()">Login</button>
                     <button type="button" class="Press-btn" onclick="Cadastro()">Cadastrar</button>
-                </div> 
+                </div>
                 <div class="social-icons">
                     <img src="./css/img/1.png">
                     <img src="./css/img/2.png">
                     <img src="./css/img/3.png">
-                </div>  
-                <form id="Login" class="input-group">
-                    <input type="text" class="Insert" placeholder="Usuário" required>
-                    <input type="password" class="Insert" placeholder="Senha" required>
+                </div>
+                <form th:action="@{/logado}" method="POST" th:object="${conta}" id="Login" class="input-group">
+                    <input type="text"  class="Insert" th:field="*{Usuario}" placeholder="Usuário" required>
+                    <input type="password"  class="Insert" th:field="*{Senha}" placeholder="Senha" required>
                     <input type="checkbox" class="check-box"><span>Lembrar Senha</span>
                     <button type="submit" class="btn-login">Login</button>
-                </form>  
-                <form id="Cadastro" class="input-group">
-                    <input type="text" class="Insert" placeholder="Usuário" required>
-                    <input type="text" class="Insert" placeholder="CPF" required>
-                    <input type="email" class="Insert" placeholder="Email" required>
-                    <input type="password" class="Insert" placeholder="Senha" required>
-                    <input type="password" class="Insert" placeholder="Confirme a Senha" required>
+                </form>
+                <form th:action="@{/cadastrado}" method="POST" th:object="${conta}" id="Cadastro" class="input-group" >
+                    <input type="text"  class="Insert" th:field="*{Usuario}" placeholder="Usuário" required>
+                    <input type="text"  class="Insert" th:field="*{CPF}" placeholder="CPF" required>
+                    <input type="email"  class="Insert" th:field="*{Email}" placeholder="Email" required>
+                    <input type="password"  class="Insert" th:field="*{Senha}" placeholder="Senha" required>
+                    <input type="password"  class="Insert"  placeholder="Confirme a Senha">
                     <input type="checkbox" class="check-box"><span>Eu aceito os termos e condições</span>
                     <button type="submit" class="btn-login">Registrar</button>
-                </form>              
+                </form>
             </div>
         </div>
-    </div>  
+    </div>
     <script>
         var x = document.getElementById("Login");
         var y = document.getElementById("Cadastro");
@@ -68,6 +68,6 @@
             y.style.left = "450px";
             z.style.left = "0px";
         }
-    </script>  
+    </script>
 </body>
 </html>

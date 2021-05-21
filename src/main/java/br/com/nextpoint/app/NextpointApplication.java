@@ -1,4 +1,4 @@
-package br.com.nextpoint;
+package br.com.nextpoint.app;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -6,7 +6,6 @@ import javax.persistence.Persistence;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
 public class NextpointApplication {
