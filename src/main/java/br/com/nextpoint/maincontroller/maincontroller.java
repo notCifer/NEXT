@@ -13,7 +13,7 @@ public class maincontroller {
 
     @GetMapping("/login")
     public String login() {
-        return "logi";
+        return "login";
     }
 
 }
