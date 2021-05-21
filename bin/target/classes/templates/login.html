@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/others.css">
+    <title>LOGIN</title>
+</head>
+<body>
+    <div class="Top">
+        <div class="menu">
+            <ul>
+                <li class="logo"><img src="./css/img/navigation.png"><h1 class="logo-nome">Next Point</h1></li>              
+            </ul>
+            <ul>
+                <li><a class="letter" href="/home" ><b>HOME</b></a></li>
+                <li><a class="letter" href="./home#SERVICES">PLANOS</a></li>
+                <li><a class="letter" href="#">SOBRE</a></li>
+                <li><a class="letter" href="#">CONTATO</a></li>
+            </ul>
+        </div>
+        <div class="body">
+            <div class="Form-box">   
+                <div class="btn-box">
+                    <div id="btn"></div>
+                    <button type="button" class="Press-btn" onclick="Login()">Login</button>
+                    <button type="button" class="Press-btn" onclick="Cadastro()">Cadastrar</button>
+                </div> 
+                <div class="social-icons">
+                    <img src="./css/img/1.png">
+                    <img src="./css/img/2.png">
+                    <img src="./css/img/3.png">
+                </div>  
+                <form id="Login" class="input-group">
+                    <input type="text" class="Insert" placeholder="Usuário" required>
+                    <input type="password" class="Insert" placeholder="Senha" required>
+                    <input type="checkbox" class="check-box"><span>Lembrar Senha</span>
+                    <button type="submit" class="btn-login">Login</button>
+                </form>  
+                <form id="Cadastro" class="input-group">
+                    <input type="text" class="Insert" placeholder="Usuário" required>
+                    <input type="email" class="Insert" placeholder="Email" required>
+                    <input type="password" class="Insert" placeholder="Senha" required>
+                    <input type="password" class="Insert" placeholder="Confirme a Senha" required>
+                    <input type="checkbox" class="check-box"><span>Eu aceito os termos e condições</span>
+                    <button type="submit" class="btn-login">Registrar</button>
+                </form>              
+            </div>
+        </div>
+    </div>  
+    <script>
+        var x = document.getElementById("Login");
+        var y = document.getElementById("Cadastro");
+        var z = document.getElementById("btn");
+
+        function Cadastro(){
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+        }
+        function Login(){
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0px";
+        }
+    </script>  
+</body>
+</html>
