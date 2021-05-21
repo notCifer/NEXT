@@ -80,7 +80,7 @@ body{
 }
 .Form-box{
     width: 380px;
-    height: 480px;
+    height: 550px;
     position: relative;
     margin: 6% auto;
     border-radius: 15px;
@@ -90,11 +90,8 @@ body{
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.63);
     overflow: hidden;
     padding: 5px;
-    animation: drop 0.5s;
-}
-.Form-box:hover{
     backdrop-filter: blur(8px);
-    transition: 0.2s;
+    animation: drop 0.5s;
 }
 .btn-box{
     width: 220px;
@@ -188,6 +185,8 @@ span{
 }
 #Login{
     left: 50px;
+    top: 50px;
+    position: relative;
 }
 #Cadastro{
     left: 450px;
