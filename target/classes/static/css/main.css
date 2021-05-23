@@ -280,7 +280,7 @@ a{
 }
 .s-box-cont{
     width: 80%;
-    display: flex;
+    display:flex;
     justify-content: center;
     align-items: center;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,11 +14,11 @@
     <div class="menu">
         <ul>
             <li class="logo"><img src="./css/img/navigation.png"><h1 class="logo-nome">Next Point</h1></li>
-            <li class="bt"><a href="./login" class="btn-login"><span>Logar</span></a></li>              
+            <li class="bt"><a th:href="@{/login}" class="btn-login"><span>Logar</span></a></li>              
         </ul>   
         <div class="block">
             <ul class="list">
-                <li><a class="letter-i" href="/home">HOME</a></li>
+                <li><a class="letter-i" th:href="@{/home}">HOME</a></li>
                 <li><a class="letter" href="#SERVICES">PLANOS</a></li>
                 <li><a class="letter" href="#SOBRE">SOBRE</a></li>
                 <li><a class="letter" href="#CONTATO">CONTATO</a></li>
@@ -30,7 +30,7 @@
             <div class="list3"></div>
         </div>
     </div>
-    <section class="HOME" id="HOME">
+    <section class="HOME" >
         <div class="banner">
             <div class="App-Texto">
                 <h1>Oque acha de ultilizar o transporte público e <br> pagar apenas o percorrido?</h1>
