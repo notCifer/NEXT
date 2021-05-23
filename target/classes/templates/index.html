@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,7 +18,7 @@
         </ul>   
         <div class="block">
             <ul class="list">
-                <li><a class="letter-i" href="/home">HOME</a></li>
+                <li><a class="letter-i" th:href="@{/home}">HOME</a></li>
                 <li><a class="letter" href="#SERVICES">PLANOS</a></li>
                 <li><a class="letter" href="#SOBRE">SOBRE</a></li>
                 <li><a class="letter" href="#CONTATO">CONTATO</a></li>

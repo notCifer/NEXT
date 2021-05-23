@@ -156,6 +156,10 @@ body{
     background: white;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
+.Insert:focus{
+    border-color: rgb(255, 153, 0);
+    box-shadow: inset 0 0 5px rgb(255, 174, 0) ;
+}
 
 .btn-login{
     color: white;
@@ -170,8 +174,62 @@ body{
     border-radius: 30px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
-.btn-login:hover{
+.btn-cadastro{
+    color: white;
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right,rgb(255, 166, 0),rgb(255, 102, 0));
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    cursor: no-drop;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.btn-cadastro.active{
+    visibility:visible;
+    opacity: 1;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn-login:hover,.btn-cadastro.active:hover{
     background:transparent;
+}
+
+.erro{
+    font-size: 12px;
+    background: #f8d7da;
+    text-align: center;
+    padding: 1px 0;
+    margin-left: 20px;
+    border-radius: 20px;
+    color: #8B3E46;
+    border: 1px solid #f5c6cb;
+    display: none;
+}
+
+.erro.matched{
+    background: #D4EDDA;
+    color: #588C64;
+    border-color: #C3E6CB;
+}
+
+.mostrar{
+    position: absolute;
+    right: 0px;
+    top: 212px;
+    transform: translateY(-50%);
+    font-size: 10px;
+    font-weight: 600;
+    user-select: none;
+    cursor: pointer;
+    display: none;
 }
 
 .check-box{
