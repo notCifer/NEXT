@@ -33,8 +33,14 @@ public class HomeController {
     public String salvar(@RequestParam("Usuario") String Usuario, @RequestParam("Senha") String Senha,
             @RequestParam("Email") String Email, @RequestParam("CPF") String CPF) {
         Conta NewC = new Conta(Usuario, CPF, Senha, Email);
-        CR.save(NewC);
-        return "salvar";
+        try {
+            CR.save(NewC);
+            return "salvar";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     @GetMapping("/contas")

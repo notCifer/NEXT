@@ -45,16 +45,19 @@
                     <input type="checkbox" class="check-box"><span>Lembrar Senha</span>
                     <button type="submit" class="btn-login">Login</button>
                 </form>
-                <form action="salvar" method="POST" id="Cadastro" class="input-group" onsubmit="return botao()" >
+                <form action="salvar" method="POST" id="Cadastro" class="input-group" onsubmit="return botao()">
                     <input type="text" name="Usuario" class="Insert" placeholder="Usuário" required>
                     <input type="text" name="CPF" class="Insert" placeholder="CPF" required>
                     <input type="email" name="Email" class="Insert" placeholder="Email" required>
-                    <input id="SENHA1" onkeyup="active()" type="password" name="Senha" class="Insert" placeholder="Senha" required>
+                    <input id="SENHA1" onkeyup="active()" type="password" name="Senha" class="Insert"
+                        placeholder="Senha" required>
                     <input id="SENHA2" onkeyup="active_2()" type="password" name="Confirme_Senha" class="Insert"
                         placeholder="Confirme a Senha" required disabled>
-                        <div class="mostrar">Mostrar</div>
-                        <div class="erro">Confirme a Senha </div>
-                    <input type="checkbox" class="check-box"><span>Eu aceito os termos e condições</span>
+                    <div class="mostrar">Mostrar</div>
+                    <div class="erro">Senhas devem ser iguais</div>
+                    <label class="checkbox">
+                        <input type="checkbox" class="check-box"><span>Eu aceito os termos e condições</span>
+                    </label>
                     <button type="submit" class="btn-cadastro" onclick="botao()">Registrar</button>
                 </form>
             </div>
@@ -71,6 +74,7 @@
             y.style.left = "50px";
             z.style.left = "110px";
         }
+
         function Login() {
             x.style.left = "50px";
             y.style.left = "450px";
