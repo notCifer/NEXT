@@ -1,5 +1,6 @@
 package com.app.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,19 +13,20 @@ public class Conta {
     }
 
     public Conta(String usuario, String cpf, String senha, String email) {
-        Usuario = usuario;
+        USUARIO = usuario;
         CPF = cpf;
-        Senha = senha;
-        Email = email;
+        SENHA = senha;
+        EMAIL = email;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
-    private String Usuario;
+    @Column(unique = true)
+    private String USUARIO;
     private String CPF;
-    private String Senha;
-    private String Email;
+    private String SENHA;
+    private String EMAIL;
 
     public Long getId() {
         return Id;
@@ -34,12 +36,12 @@ public class Conta {
         this.Id = Id;
     }
 
-    public String getUsuário() {
-        return Usuario;
+    public String getUsuario() {
+        return USUARIO;
     }
 
-    public void setUsuário(String Usuário) {
-        this.Usuario = Usuário;
+    public void setUsuario(String usuario) {
+        this.USUARIO = usuario;
     }
 
     public String getCPF() {
@@ -51,18 +53,18 @@ public class Conta {
     }
 
     public String getSenha() {
-        return Senha;
+        return SENHA;
     }
 
     public void setSenha(String Senha) {
-        this.Senha = Senha;
+        this.SENHA = Senha;
     }
 
     public String getEmail() {
-        return Email;
+        return EMAIL;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.EMAIL = Email;
     }
 }

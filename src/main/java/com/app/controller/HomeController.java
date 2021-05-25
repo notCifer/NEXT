@@ -1,4 +1,4 @@
-package com.app;
+package com.app.controller;
 
 import java.util.List;
 import com.app.model.Conta;
@@ -24,7 +24,7 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login() {
         return "login";
     }
@@ -33,12 +33,20 @@ public class HomeController {
     public String salvar(@RequestParam("Usuario") String Usuario, @RequestParam("Senha") String Senha,
             @RequestParam("Email") String Email, @RequestParam("CPF") String CPF) {
         Conta NewC = new Conta(Usuario, CPF, Senha, Email);
-        try {
-            CR.save(NewC);
-            return "salvar";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+
+        Conta C = CR.findByUsuario(Usuario);
+
+        if (C == null) {
+            try {
+                CR.save(NewC);
+                return "salvar";
+            } catch (Exception e) {
+                e.toString();
+                return null;
+            }
+        } else {
+
+            return "login";
         }
 
     }
