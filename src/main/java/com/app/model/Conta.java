@@ -5,27 +5,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Conta {
 
-    public Conta() {
-    }
-
-    public Conta(String usuario, String cpf, String senha, String email) {
-        USUARIO = usuario;
-        CPF = cpf;
-        SENHA = senha;
-        EMAIL = email;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
+
+    @NotNull
+    @NotEmpty
     @Column(unique = true)
     private String USUARIO;
+
+    @NotNull
+    @NotEmpty
+    @Column(unique = true)
     private String CPF;
+
+    @NotNull
+    @NotEmpty
     private String SENHA;
+
+    @NotNull
+    @NotEmpty
+    @Column(unique = true)
     private String EMAIL;
 
     public Long getId() {
@@ -66,5 +72,15 @@ public class Conta {
 
     public void setEmail(String Email) {
         this.EMAIL = Email;
+    }
+
+    public Conta() {
+    }
+
+    public Conta(String usuario, String cpf, String senha, String email) {
+        USUARIO = usuario;
+        CPF = cpf;
+        SENHA = senha;
+        EMAIL = email;
     }
 }
