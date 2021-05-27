@@ -1,86 +1,124 @@
 package com.app.model;
 
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @Entity
+@Table(name = "conta")
 public class Conta {
+    
+    public Conta() {
+    }
+   
+
+    public Conta(String uSUARIO, @NotEmpty String sENHA, @NotEmpty String eMAIL, boolean eNABLED) {
+        USUARIO = uSUARIO;
+        SENHA = sENHA;
+        EMAIL = eMAIL;
+        ENABLED = eNABLED;
+    }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long ID;
 
-    @NotNull
-    @NotEmpty
-    @Column(unique = true)
+    @Column(name = "user" ,unique = true, nullable = false)
     private String USUARIO;
 
-    @NotNull
     @NotEmpty
-    @Column(unique = true)
-    private String CPF;
-
-    @NotNull
-    @NotEmpty
+    @Column(name = "senha" ,nullable = false)
     private String SENHA;
 
-    @NotNull
     @NotEmpty
-    @Column(unique = true)
+    @Column(name = "email" ,unique = true, nullable = false)
     private String EMAIL;
 
-    public Long getId() {
-        return Id;
+    @Column(name = "enable")
+    private boolean ENABLED;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "regra_id"))
+    private Collection<Regras> REGRAS;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "Conta_Pessoa",joinColumns = @JoinColumn(name = "conta_id", referencedColumnName = "ID"),
+                inverseJoinColumns = @JoinColumn(name = "pessoa_id", referencedColumnName = "ID", unique = true))
+    private Pessoa PESSOA;
+
+    public Long getID() {
+        return ID;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setID(Long Id) {
+        this.ID = Id;
     }
 
-    public String getUsuario() {
+    public String getUSUARIO() {
         return USUARIO;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUSUARIO(String usuario) {
         this.USUARIO = usuario;
     }
 
-    public String getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public String getSenha() {
+    public String getSENHA() {
         return SENHA;
     }
 
-    public void setSenha(String Senha) {
-        this.SENHA = Senha;
+    public void setSENHA(String Senha) {
+        BCryptPasswordEncoder PE = new BCryptPasswordEncoder();
+        this.SENHA = PE.encode(Senha);
     }
 
-    public String getEmail() {
+    public String getEMAIL() {
         return EMAIL;
     }
 
-    public void setEmail(String Email) {
+    public void setEMAIL(String Email) {
         this.EMAIL = Email;
     }
 
-    public Conta() {
+    public Collection<Regras> getREGRAS() {
+        return REGRAS;
     }
 
-    public Conta(String usuario, String cpf, String senha, String email) {
-        USUARIO = usuario;
-        CPF = cpf;
-        SENHA = senha;
-        EMAIL = email;
+    public void setREGRAS(Collection<Regras> REGRAS) {
+        this.REGRAS = REGRAS;
     }
+
+
+    public boolean isENABLED() {
+        return ENABLED;
+    }
+
+    public void setENABLED(boolean ENABLED) {
+        this.ENABLED = ENABLED;
+    }
+
+
+    public Pessoa getPESSOA() {
+        return PESSOA;
+    }
+
+    public void setPESSOA(Pessoa PESSOA) {
+        this.PESSOA = PESSOA;
+    }
+
 }

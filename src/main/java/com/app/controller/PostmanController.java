@@ -1,10 +1,7 @@
 package com.app.controller;
 
 import java.util.List;
-
-import javax.transaction.Transactional;
 import javax.validation.Valid;
-
 import com.app.model.Conta;
 import com.app.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Contas")
+@RequestMapping("/contas")
 public class PostmanController {
 
     @Autowired
@@ -25,14 +22,10 @@ public class PostmanController {
     @GetMapping
     public ResponseEntity<List<Conta>> getConta() {
         List<Conta> C = CR.findAll();
-        if (C.isEmpty()) {
-            return ResponseEntity.ok().body(C);
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok().body(C);
     }
 
     @PostMapping
-    @Transactional
     public ResponseEntity<?> postProduct(@RequestBody @Valid Conta C) {
         CR.save(C);
         return ResponseEntity.ok().body(C);

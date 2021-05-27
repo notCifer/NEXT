@@ -5,26 +5,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/others.css" th:href="@{/css/others.css}">
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/others.css">
-    <title>LOGIN</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <title>NextPoint: Login</title>
 </head>
 
 <body>
     <div class="Top">
         <div class="menu">
             <ul>
-                <li class="logo"><img src="./css/img/navigation.png">
+                <li class="logo">
+                    <img src="./css/img/navigation.png">
                     <h1 class="logo-nome">Next Point</h1>
                 </li>
             </ul>
             <ul>
-                <li><a class="letter" href="/Home"><b>HOME</b></a></li>
-                <li><a class="letter" href="/Home#SERVICES">PLANOS</a></li>
-                <li><a class="letter" href="/Home#SOBRE">SOBRE</a></li>
-                <li><a class="letter" href="/Home#CONTATO">CONTATO</a></li>
+                <li><a class="letter" href="/"><b>HOME</b></a></li>
+                <li><a class="letter" href="/#SERVICES">PLANOS</a></li>
+                <li><a class="letter" href="/#SOBRE">SOBRE</a></li>
+                <li><a class="letter" href="/#CONTATO">CONTATO</a></li>
             </ul>
         </div>
         <div class="body">
@@ -39,31 +43,41 @@
                     <img src="./css/img/2.png">
                     <img src="./css/img/3.png">
                 </div>
-                <form id="Login" class="input-group">
-                    <input type="text" name="log_Usuario" class="Insert" placeholder="Usuário" required>
-                    <input type="password" name="log_Senha" class="Insert" placeholder="Senha" required>
-                    <input type="checkbox" class="check-box"><span>Lembrar Senha</span>
-                    <button type="submit" class="btn-login">Login</button>
+
+                <form th:action="@{/login}" method="POST" id="Login" class="input-group">
+                    <div class="alerta" th:if="${param.error}">
+                        Usuário ou senha invalido
+                    </div>
+                    <input type="text" name="username" class="Insert" placeholder="Usuário" required>
+                    <input type="password" name="password" class="Insert" placeholder="Senha" required>
+                    <label class="form-checkbox">
+                        <input type="checkbox" class="check-box"><span>Lembrar Senha</span>
+                        <span class="checkmark"></span>
+                    </label>             
+                    <button type="submit" class="btn-login" value="Sign in">Login</button>
                 </form>
-                <form action="salvar" method="POST" id="Cadastro" class="input-group" onsubmit="return botao()">
+
+                <form method="POST" id="Cadastro" class="input-group" onsubmit="return botao()">
                     <input type="text" name="Usuario" class="Insert" placeholder="Usuário" required>
-                    <input type="text" name="CPF" class="Insert" placeholder="CPF" required>
-                    <input type="email" name="Email" class="Insert" placeholder="Email" required>
+                    <input id="email" type="email" name="Email" class="Insert" placeholder="Email" required>
                     <input id="SENHA1" onkeyup="active()" type="password" name="Senha" class="Insert"
-                        placeholder="Senha" required>
+                        placeholder="Senha" minlength="6" required>
                     <input id="SENHA2" onkeyup="active_2()" type="password" name="Confirme_Senha" class="Insert"
-                        placeholder="Confirme a Senha" required disabled>
+                        placeholder="Confirme a Senha" min="6" required disabled>
                     <div class="mostrar">Mostrar</div>
                     <div class="erro">Senhas devem ser iguais</div>
-                    <label class="checkbox">
+                    <label class="form-checkbox">
                         <input type="checkbox" class="check-box"><span>Eu aceito os termos e condições</span>
+                        <span class="checkmark"></span>
                     </label>
                     <button type="submit" class="btn-cadastro" onclick="botao()">Registrar</button>
                 </form>
+                <div id="resposta"></div>
+
             </div>
         </div>
     </div>
-    <script src="./jvs/fuction.js"></script>
+    <script src="./js/fuction.js"></script>
     <script>
         var x = document.getElementById("Login");
         var y = document.getElementById("Cadastro");

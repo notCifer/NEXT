@@ -6,7 +6,7 @@ const showBtn = document.querySelector(".mostrar")
 var delay = 1000;
 
 function active() {
-    if (S1.value.length >= 6) {
+    if (S1.value.length >= 1) {
         S2.removeAttribute("disabled", "");
         btn.classList.add("active");
     } else {
@@ -23,7 +23,7 @@ function botao() {
     } else {
         error.style.display = "block";
         error.classList.add("matched");
-        error.textContent = "Boa! Senha confirmada";
+        error.textContent = "Senha confirmada";
         return true;
     }
 }

@@ -1,12 +1,10 @@
 package com.app.repository;
 
 import com.app.model.Conta;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-public interface ContaRepository extends JpaRepository<Conta, String> {
+public interface ContaRepository extends JpaRepository<Conta, Long> {
 
-    @Query("FROM Conta WHERE usuario = ?1")
-    Conta findByUsuario(String usuario);
-
+    Conta findByUSUARIO(String usuario);
 }
