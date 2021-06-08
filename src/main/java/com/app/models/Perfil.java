@@ -1,9 +1,12 @@
-package com.app.model;
+package com.app.models;
+
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -16,16 +19,15 @@ public class Perfil implements GrantedAuthority{
     private Long id;
     private String descricao;
 
+    @ManyToMany(mappedBy = "perfis")
+    private Set<Conta> contas;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
     }
 
     public void setDescricao(String descricao) {
@@ -35,6 +37,14 @@ public class Perfil implements GrantedAuthority{
     @Override
     public String getAuthority() {
         return this.descricao;
+    }
+
+    public Set<Conta> getContas() {
+        return contas;
+    }
+
+    public void setContas(Set<Conta> contas) {
+        this.contas = contas;
     }
 
 }

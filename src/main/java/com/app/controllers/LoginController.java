@@ -1,16 +1,15 @@
-package com.app.controller;
+package com.app.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 @Controller
-@RequestMapping("/Nextpoint")
-public class PaginaController {
+@RequestMapping("/Login")
+public class LoginController {
 
     @GetMapping
-    public String pagina() {
-        return "page";
+    public String Load() {
+        return "login";
     }
+
 }

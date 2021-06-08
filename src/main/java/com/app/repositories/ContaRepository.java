@@ -1,11 +1,12 @@
-package com.app.repository;
+package com.app.repositories;
 
 import java.util.Optional;
 
-import com.app.model.Conta;
+import com.app.models.Conta;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ContaRepository extends JpaRepository<Conta, Long> {
 
-    Optional<Conta> findByusuario(String usuario);
+    Conta findByusuario(String usuario);
 }

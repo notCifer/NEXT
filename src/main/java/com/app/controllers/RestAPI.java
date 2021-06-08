@@ -1,9 +1,11 @@
-package com.app.controller;
+package com.app.controllers;
 
 import java.util.List;
 import javax.validation.Valid;
-import com.app.model.Conta;
-import com.app.repository.ContaRepository;
+
+import com.app.models.Conta;
+import com.app.repositories.ContaRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

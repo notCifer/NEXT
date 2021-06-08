@@ -1,7 +1,7 @@
-package com.app.config;
+package com.app.configs;
 
-import com.app.repository.ContaRepository;
-import com.app.service.AutenticaService;
+import com.app.services.AutenticaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AutenticaService AS;
-
-    @Autowired
-    private ContaRepository CR;
-
-    @Autowired
-    private CustomLogin successHandler;
+    
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Override
     @Bean
@@ -50,14 +49,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-        .antMatchers(HttpMethod.GET,"/Home").permitAll()
+        .antMatchers(HttpMethod.GET,"/").permitAll()
         .antMatchers(HttpMethod.GET,"/Login").permitAll()
-        .antMatchers(HttpMethod.GET,"/actuator/**").permitAll()
         .antMatchers(HttpMethod.POST,"/Login").permitAll()
+        .antMatchers(HttpMethod.GET,"/Register").permitAll()
+        .antMatchers(HttpMethod.POST,"/Register").permitAll()
+        .antMatchers(HttpMethod.GET,"/actuator/**").permitAll()
         .anyRequest().authenticated()
         .and()
         .formLogin().loginPage("/Login")
-        .successHandler(successHandler);
+        .permitAll()
+        .and()
+        .logout()
+        .permitAll();
     }
 
 }

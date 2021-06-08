@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/others.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -33,11 +33,6 @@
         </div>
         <div class="body">
             <div class="Form-box">
-                <div class="btn-box">
-                    <div id="btn"></div>
-                    <button type="button" class="Press-btn" onclick="Login()">Login</button>
-                    <button type="button" class="Press-btn" onclick="Cadastro()">Cadastrar</button>
-                </div>
                 <div class="social-icons">
                     <img src="./css/img/1.png">
                     <img src="./css/img/2.png">
@@ -45,7 +40,7 @@
                 </div>
 
                 <form th:action="@{/Login}" method="POST" id="Login" class="input-group">
-                    <div th:if="${param.error}">
+                    <div class="loginerro" th:if="${param.error}">
                         Usuario ou senha incorretos
                     </div>
                     <div th:if="${param.logout}">
@@ -57,28 +52,11 @@
                         <input type="checkbox" class="check-box" id="rememberMe" for="rememberMe" value="lsRememberMe"><span>Lembrar Senha</span>
                         <span class="checkmark"></span>
                     </label>
-                    <button type="submit" class="btn-login" value="Sign in" onclick="lsRememberMe()">Login</button>
-                </form>
-
-                <form method="POST" id="Cadastro" class="input-group" onsubmit="return botao()">
-                    <input type="text" name="Usuario" class="Insert" placeholder="Usuário" required>
-                    <input id="email" type="email" name="Email" class="Insert" placeholder="Email" required>
-                    <input id="SENHA1" onkeyup="active()" type="password" name="Senha" class="Insert"
-                        placeholder="Senha" minlength="6" required>
-                    <input id="SENHA2" onkeyup="active_2()" type="password" name="Confirme_Senha" class="Insert"
-                        placeholder="Confirme a Senha" min="6" required disabled>
-                    <div class="mostrar">Mostrar</div>
-                    <div class="erro">Senhas devem ser iguais</div>
-
-                    <label class="form-checkbox">
-                        <input type="checkbox" class="check-box" ><span>Eu aceito os termos e condições</span>
-                        <span class="checkmark"></span>
                     </label>
-
-                    <button type="submit" class="btn-cadastro" onclick="botao()" >Registrar</button>
+                    <button type="submit" class="btn-login" value="Sign in" onclick="lsRememberMe()">Login</button>
+                    <a class="registerpage" href="/Register">Criar conta</a>
                 </form>
-                <div id="resposta"></div>
-
+                
             </div>
         </div>
     </div>

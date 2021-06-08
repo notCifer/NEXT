@@ -1,4 +1,4 @@
-package com.app.model;
+package com.app.models;
 
 import java.util.Date;
 import javax.persistence.Column;

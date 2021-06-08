@@ -1,8 +1,10 @@
-package com.app.model;
+package com.app.models;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -47,7 +49,7 @@ public class Conta implements UserDetails {
     private Pessoa pessoa;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Perfil> perfis = new ArrayList<>();
+    private Set<Perfil> perfis;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -122,10 +124,12 @@ public class Conta implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-    public List<Perfil> getPerfis() {
+
+    public Set<Perfil> getPerfis() {
         return perfis;
     }
-    public void setPerfis(List<Perfil> perfis) {
+
+    public void setPerfis(Set<Perfil> perfis) {
         this.perfis = perfis;
     }
 

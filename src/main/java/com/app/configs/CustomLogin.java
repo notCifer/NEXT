@@ -1,4 +1,4 @@
-package com.app.config;
+package com.app.configs;
 
 import java.io.IOException;
 
@@ -25,17 +25,4 @@ public class CustomLogin extends SimpleUrlAuthenticationSuccessHandler {
         RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
-
-    // private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
-
-    // @Override
-    // public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1,
-    //         Authentication authentication) throws IOException, ServletException {
-
-    //             if (r) {
-                    
-    //             }
-    //     redirectStrategy.sendRedirect(arg0, arg1, "/Nextpoint");
-    // };
-
 }

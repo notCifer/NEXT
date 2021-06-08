@@ -49,6 +49,17 @@ body {
     text-decoration: none;
 }
 
+.registerpage{
+    text-decoration: none;
+    color: rgb(255, 145, 0);
+    font-size: 13px;
+    text-shadow: 0 0 15px #000000;
+    font-weight: 700;
+    position: absolute;
+    left: 98px;
+    top: 220px;
+}
+
 .letter-i {
     list-style: none;
     color: white;
@@ -90,7 +101,7 @@ body {
 
 .Form-box {
     width: 380px;
-    height: 480px;
+    height: 400px;
     position: relative;
     margin: 6% auto;
     border-radius: 15px;
@@ -135,7 +146,7 @@ body {
 }
 
 .social-icons {
-    margin: 30px auto;
+    margin-top: 50px;
     text-align: center;
 }
 
@@ -149,7 +160,6 @@ body {
 
 .input-group {
     top: 180px;
-    position: absolute;
     width: 280px;
     transition: 0.5s;
 }
@@ -198,70 +208,10 @@ body {
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-cadastro {
-    color: white;
-    width: 80%;
-    padding: 10px 30px;
-    position: relative;
-    top: 10px;
-    cursor: pointer;
-    display: block;
-    margin: auto;
-    background: linear-gradient(to right, rgb(255, 166, 0), rgb(255, 102, 0));
-    border: 0;
-    outline: none;
-    border-radius: 30px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-    cursor: no-drop;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.5s;
-}
-
-.btn-cadastro.active {
-    visibility: visible;
-    opacity: 1;
-    cursor: pointer;
-    transition: 0.5s;
-}
-
 .btn-login:hover, .btn-cadastro.active:hover {
     background: transparent;
 }
 
-.alerta{
-    position: relative;
-    left: 20%;
-    top: 10%;
-    font-size: 12px;
-    font-weight: bold;
-    color: red;
-}
-
-.erro {
-    margin-top: -10px;
-    font-size: 12px;
-    font-weight: bold;
-    text-align: center;
-    color: #ff3c00;
-    display: none;
-}
-
-.erro.matched {
-    color: #00ff3c;
-}
-
-.mostrar {
-    position: relative;
-    top: -23px;
-    left: 230px;
-    transform: translateY(-50%);
-    font-size: 10px;
-    font-weight: 600;
-    user-select: none;
-    cursor: pointer;
-    display: none;
-}
 
 .form-checkbox {
     margin-top: 10px;
@@ -487,6 +437,13 @@ a {
 .s-box:hover .barra {
     display: block;
     animation: bar 0.5s;
+}
+
+.loginerro{
+    font-size: 13px;
+    font-weight: bold;
+    color: #ff3c00;
+    text-align: center;
 }
 
 @keyframes bar {
