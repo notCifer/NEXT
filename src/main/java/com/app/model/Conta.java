@@ -1,7 +1,8 @@
 package com.app.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
-
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,116 +10,123 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
-@Entity
+@Entity(name = "Conta")
 @Table(name = "conta")
-public class Conta {
+public class Conta implements UserDetails {
     
     public Conta() {
-    }
-   
+    } 
 
-    public Conta(String uSUARIO, @NotEmpty String sENHA, @NotEmpty String eMAIL, boolean eNABLED) {
-        USUARIO = uSUARIO;
-        SENHA = sENHA;
-        EMAIL = eMAIL;
-        ENABLED = eNABLED;
-    }
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long ID;
+    @NotEmpty @NotNull 
+    @Column(unique = true)
+    private String usuario;
 
-    @Column(name = "user" ,unique = true, nullable = false)
-    private String USUARIO;
+    @NotEmpty @NotNull
+    @Column
+    private String senha;
 
-    @NotEmpty
-    @Column(name = "senha" ,nullable = false)
-    private String SENHA;
+    @NotEmpty @NotNull
+    @Column(unique = true)
+    private String email;
 
-    @NotEmpty
-    @Column(name = "email" ,unique = true, nullable = false)
-    private String EMAIL;
-
-    @Column(name = "enable")
-    private boolean ENABLED;
+    @OneToOne(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+    private Pessoa pessoa;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
-                inverseJoinColumns = @JoinColumn(name = "regra_id"))
-    private Collection<Regras> REGRAS;
+    private List<Perfil> perfis = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "Conta_Pessoa",joinColumns = @JoinColumn(name = "conta_id", referencedColumnName = "ID"),
-                inverseJoinColumns = @JoinColumn(name = "pessoa_id", referencedColumnName = "ID", unique = true))
-    private Pessoa PESSOA;
-
-    public Long getID() {
-        return ID;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.perfis;
     }
 
-    public void setID(Long Id) {
-        this.ID = Id;
+    @Override
+    public String getPassword() {
+        return this.senha;
     }
 
-    public String getUSUARIO() {
-        return USUARIO;
+    @Override
+    public String getUsername() {
+        return this.usuario;
     }
 
-    public void setUSUARIO(String usuario) {
-        this.USUARIO = usuario;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
     }
 
-    public String getSENHA() {
-        return SENHA;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
     }
 
-    public void setSENHA(String Senha) {
-        BCryptPasswordEncoder PE = new BCryptPasswordEncoder();
-        this.SENHA = PE.encode(Senha);
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
     }
 
-    public String getEMAIL() {
-        return EMAIL;
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+    public Long getId() {
+        return id;
     }
 
-    public void setEMAIL(String Email) {
-        this.EMAIL = Email;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Collection<Regras> getREGRAS() {
-        return REGRAS;
+    public Pessoa getPessoa() {
+        return pessoa;
     }
 
-    public void setREGRAS(Collection<Regras> REGRAS) {
-        this.REGRAS = REGRAS;
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 
-
-    public boolean isENABLED() {
-        return ENABLED;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setENABLED(boolean ENABLED) {
-        this.ENABLED = ENABLED;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-
-    public Pessoa getPESSOA() {
-        return PESSOA;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPESSOA(Pessoa PESSOA) {
-        this.PESSOA = PESSOA;
+    public void setSenha(String senha) {
+        this.senha = new BCryptPasswordEncoder().encode(senha);
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public List<Perfil> getPerfis() {
+        return perfis;
+    }
+    public void setPerfis(List<Perfil> perfis) {
+        this.perfis = perfis;
     }
 
 }

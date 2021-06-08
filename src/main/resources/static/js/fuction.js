@@ -48,3 +48,27 @@ function active_2() {
         showBtn.style.display = "none";
     }
 }
+
+const rmCheck = document.getElementById("rememberMe"),
+    emailInput = document.getElementById("username"),
+    passwordInput = document.getElementById("password");
+
+if (localStorage.checkbox && localStorage.checkbox !== "") {
+  rmCheck.setAttribute("checked", "checked");
+  emailInput.value = localStorage.username;
+  passwordInput.value = localStorage.password;
+} else {
+  rmCheck.removeAttribute("checked");
+  emailInput.value = "";
+}
+
+function lsRememberMe() {
+  if (rmCheck.checked && emailInput.value !== "") {
+    localStorage.username = emailInput.value;
+    localStorage.password = passwordInput.value
+    localStorage.checkbox = rmCheck.value;
+  } else {
+    localStorage.username = "";
+    localStorage.checkbox = "";
+  }
+}

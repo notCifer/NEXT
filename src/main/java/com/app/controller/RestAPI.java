@@ -5,30 +5,28 @@ import javax.validation.Valid;
 import com.app.model.Conta;
 import com.app.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/contas")
-public class PostmanController {
+@RestController
+@RequestMapping("/api/login")
+public class RestAPI {
 
     @Autowired
     private ContaRepository CR;
 
     @GetMapping
-    public ResponseEntity<List<Conta>> getConta() {
-        List<Conta> C = CR.findAll();
-        return ResponseEntity.ok().body(C);
+    public List<Conta> findAllConta() {
+        return CR.findAll();
     }
 
     @PostMapping
-    public ResponseEntity<?> postProduct(@RequestBody @Valid Conta C) {
+    public Conta addConta(@RequestBody @Valid Conta C) {
         CR.save(C);
-        return ResponseEntity.ok().body(C);
+        return C;
     }
 
 }

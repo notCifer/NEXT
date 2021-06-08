@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns="https://www.thymelead.org">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/others.css" th:href="@{/css/others.css}">
+    <link rel="stylesheet" href="/css/others.css">
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -44,17 +44,20 @@
                     <img src="./css/img/3.png">
                 </div>
 
-                <form th:action="@{/login}" method="POST" id="Login" class="input-group">
-                    <div class="alerta" th:if="${param.error}">
-                        Usuário ou senha invalido
+                <form th:action="@{/Login}" method="POST" id="Login" class="input-group">
+                    <div th:if="${param.error}">
+                        Usuario ou senha incorretos
                     </div>
-                    <input type="text" name="username" class="Insert" placeholder="Usuário" required>
-                    <input type="password" name="password" class="Insert" placeholder="Senha" required>
+                    <div th:if="${param.logout}">
+                        Vc deslogou
+                    </div>
+                    <input type="text" id="username" name="username" class="Insert" placeholder="Usuário" required>
+                    <input type="password" id="password" name="password" class="Insert" placeholder="Senha" required>
                     <label class="form-checkbox">
-                        <input type="checkbox" class="check-box"><span>Lembrar Senha</span>
+                        <input type="checkbox" class="check-box" id="rememberMe" for="rememberMe" value="lsRememberMe"><span>Lembrar Senha</span>
                         <span class="checkmark"></span>
-                    </label>             
-                    <button type="submit" class="btn-login" value="Sign in">Login</button>
+                    </label>
+                    <button type="submit" class="btn-login" value="Sign in" onclick="lsRememberMe()">Login</button>
                 </form>
 
                 <form method="POST" id="Cadastro" class="input-group" onsubmit="return botao()">
@@ -66,11 +69,13 @@
                         placeholder="Confirme a Senha" min="6" required disabled>
                     <div class="mostrar">Mostrar</div>
                     <div class="erro">Senhas devem ser iguais</div>
+
                     <label class="form-checkbox">
-                        <input type="checkbox" class="check-box"><span>Eu aceito os termos e condições</span>
+                        <input type="checkbox" class="check-box" ><span>Eu aceito os termos e condições</span>
                         <span class="checkmark"></span>
                     </label>
-                    <button type="submit" class="btn-cadastro" onclick="botao()">Registrar</button>
+
+                    <button type="submit" class="btn-cadastro" onclick="botao()" >Registrar</button>
                 </form>
                 <div id="resposta"></div>
 
