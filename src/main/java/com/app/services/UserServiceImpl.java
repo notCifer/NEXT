@@ -8,6 +8,8 @@ import com.app.models.Conta;
 import com.app.models.Regra;
 import com.app.models.dto.CadastroDTO;
 import com.app.repositories.ContaRepository;
+import com.app.repositories.RegraRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,10 +31,13 @@ public class UserServiceImpl implements UserService {
         CR = cR;
     }
 
+    @Autowired
+    private RegraRepository RR;
+
     @Override
     public Conta save(CadastroDTO CDTO) {
         Conta C = new Conta(CDTO.getUsername(), CDTO.getEmail(), Bcrypt.encode(CDTO.getPassword()),
-                Arrays.asList(new Regra("REGRA_USUARIO")));
+                Arrays.asList(InseriRegra()));
         return CR.save(C);
     }
 
@@ -47,6 +52,17 @@ public class UserServiceImpl implements UserService {
 
     private Collection<? extends GrantedAuthority> mAuthorities(Collection<Regra> regras) {
         return regras.stream().map(regra -> new SimpleGrantedAuthority(regra.getName())).collect(Collectors.toList());
+    }
+
+    private Regra InseriRegra(){
+        String name = "ROLE_USUARIO";
+        if (RR.findByName(name) == null) {
+            Regra R = new Regra(name);
+            RR.save(R);
+            return R;
+        }
+        return RR.findByName(name);
+          
     }
 
 }
