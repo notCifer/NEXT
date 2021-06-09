@@ -180,26 +180,41 @@ body {
     box-shadow: inset 0 0 8px rgb(255, 115, 0);
 }
 
-.loginpage{
+.span .loginpage{
     text-decoration: none;
     color: rgb(255, 153, 0);
-    font-size: 13px;
     text-shadow: 0 0 12px rgb(0, 0, 0);
     font-weight: 700;
-    position: absolute;
-    left: 70px;
-    top: 300px;
 }
+.span{
+    font-size: 12px;
+    position: fixed;
+    top: 450px;
+    right: 110px;
+}
+
+.sucess{
+    position: relative;
+    left: 115px;
+    top: 25px;
+    font-size: 20px;
+    color: rgb(255, 153, 0);
+    text-shadow: 0 0 10px rgb(255, 123, 0);
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+
 
 .btn-cadastro {
     color: white;
     width: 80%;
     padding: 10px 30px;
     position: relative;
+    left: 30px;
     top: 10px;
     cursor: pointer;
     display: block;
-    margin: auto;
     background: linear-gradient(to right, rgb(255, 166, 0), rgb(255, 102, 0));
     border: 0;
     outline: none;
@@ -232,7 +247,6 @@ body {
 }
 
 .erro {
-    margin-top: -10px;
     font-size: 12px;
     font-weight: bold;
     text-align: center;
@@ -255,9 +269,12 @@ body {
     cursor: pointer;
     display: none;
 }
-
+.form-checkbox span{
+    color: rgb(255, 255, 255);
+    font-size: 10px;
+}
 .form-checkbox {
-    margin-top: 10px;
+    margin-top: 5px;
     display: block;
     position: relative;
     padding-left: 35px;

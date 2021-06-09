@@ -39,24 +39,26 @@
                     <img src="./css/img/3.png">
                 </div>
 
-                <form th:action="@{/Login}" method="POST" id="Login" class="input-group">
+                <form th:action="@{/login}" method="POST" id="Login" class="input-group">
                     <div class="loginerro" th:if="${param.error}">
-                        Usuario ou senha incorretos
+                        Usuário ou Senha inválidos!
                     </div>
                     <div th:if="${param.logout}">
-                        Vc deslogou
+                        Usuário deslogado!
                     </div>
-                    <input type="text" id="username" name="username" class="Insert" placeholder="Usuário" required>
+                    <input type="text" id="username" name="username" class="Insert" placeholder="Usuário" required
+                        autofocus="autofocus">
                     <input type="password" id="password" name="password" class="Insert" placeholder="Senha" required>
                     <label class="form-checkbox">
-                        <input type="checkbox" class="check-box" id="rememberMe" for="rememberMe" value="lsRememberMe"><span>Lembrar Senha</span>
+                        <input type="checkbox" class="check-box" id="rememberMe" for="rememberMe"
+                            value="lsRememberMe"><span>Lembrar Senha</span>
                         <span class="checkmark"></span>
                     </label>
                     </label>
-                    <button type="submit" class="btn-login" value="Sign in" onclick="lsRememberMe()">Login</button>
-                    <a class="registerpage" href="/Register">Criar conta</a>
+                    <button type="submit" class="btn-login" value="Login" onclick="lsRememberMe()">Login</button>
+                    <span class="span">Novo Usuário? <a class="registerpage"  th:href="@{/register}">Criar conta</a></span>            
                 </form>
-                
+
             </div>
         </div>
     </div>

@@ -1,10 +1,6 @@
 package com.app.models;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,79 +8,53 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+@Entity
+public class Conta {
 
-@Entity(name = "Conta")
-@Table(name = "conta")
-public class Conta implements UserDetails {
-    
     public Conta() {
-    } 
+    }
 
-    @Id 
+    public Conta(@NotEmpty @NotNull String usuario, @NotEmpty @NotNull String email, @NotEmpty @NotNull String senha,
+            Collection<Regra> regras) {
+        this.usuario = usuario;
+        this.senha = senha;
+        this.email = email;
+        this.regras = regras;
+    }
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty @NotNull 
+    @NotEmpty
+    @NotNull
     @Column(unique = true)
     private String usuario;
 
-    @NotEmpty @NotNull
+    @NotEmpty
+    @NotNull
     @Column
     private String senha;
 
-    @NotEmpty @NotNull
+    @NotEmpty
+    @NotNull
     @Column(unique = true)
     private String email;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "contas_regras", joinColumns = @JoinColumn(name = "conta_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "regra_id", referencedColumnName = "id"))
+    private Collection<Regra> regras;
 
     @OneToOne(mappedBy = "conta", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
     private Pessoa pessoa;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Perfil> perfis;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.perfis;
-    }
-
-    @Override
-    public String getPassword() {
-        return this.senha;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.usuario;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
     public Long getId() {
         return id;
     }
@@ -114,7 +84,7 @@ public class Conta implements UserDetails {
     }
 
     public void setSenha(String senha) {
-        this.senha = new BCryptPasswordEncoder().encode(senha);
+        this.senha = senha;
     }
 
     public String getEmail() {
@@ -125,12 +95,12 @@ public class Conta implements UserDetails {
         this.email = email;
     }
 
-    public Set<Perfil> getPerfis() {
-        return perfis;
+    public Collection<Regra> getRegras() {
+        return regras;
     }
 
-    public void setPerfis(Set<Perfil> perfis) {
-        this.perfis = perfis;
+    public void setRegras(Collection<Regra> regras) {
+        this.regras = regras;
     }
 
 }

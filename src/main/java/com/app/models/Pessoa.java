@@ -13,25 +13,35 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "pessoa")
 public class Pessoa {
 
-    @Id 
+    @Id
     @GeneratedValue
-    private Long id;  
-    @Column @NotEmpty @NotNull
-    private String nome;
-    @Column @NotEmpty @NotNull
-    private String sobrenome;
-    @Column(unique = true) @NotEmpty @NotNull
-    private String cpf;
-    @Column(name = "data_nascimento") @NotEmpty @NotNull
-    private Date DTNASCIMENTO;
+    private Long id;
 
+    @Column
+    @NotEmpty
+    @NotNull
+    private String nome;
+
+    @Column
+    @NotEmpty
+    @NotNull
+    private String sobrenome;
+
+    @Column(unique = true)
+    @NotEmpty
+    @NotNull
+    private String cpf;
+
+    @Column(name = "data_nascimento")
+    @NotEmpty
+    @NotNull
+    private Date DTNASCIMENTO;
+    
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     private Conta conta;
-
 
     public Long getId() {
         return id;

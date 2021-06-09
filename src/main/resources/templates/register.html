@@ -31,32 +31,37 @@
                 <li><a class="letter" href="/#CONTATO">CONTATO</a></li>
             </ul>
         </div>
+
         <div class="body">
-            <div class="Form-box">       
+            <div class="Form-box">
                 <div class="social-icons">
                     <img src="./css/img/1.png">
                     <img src="./css/img/2.png">
                     <img src="./css/img/3.png">
                 </div>
-                <form modelAttribute="contaForm" th:action="@{/Register}" method="POST" id="Cadastro" class="input-group" onsubmit="return botao()">
-                    <input type="text" path="username" name="Usuario" class="Insert" placeholder="Usuário" required>
-                    <input id="email" type="email" name="Email" class="Insert" placeholder="Email" required>
-                    <input id="SENHA1" path="password" onkeyup="active()" type="password" name="Senha" class="Insert"
-                        placeholder="Senha" minlength="6" required>
+                <div th:if="${param.sucess}">
+                    <div><a class="sucess" href="" th:href="@{/login}">Conta Criada!</a> </div>
+                </div>
+                <form th:action="@{/register}" method="POST" th:object="${conta}" id="Cadastro" class="input-group"
+                    onsubmit="return botao()">
+                    <input type="text" th:field="*{username}" name="Usuario" class="Insert" placeholder="Usuário"
+                        required autofocus="autofocus">
+                    <input id="email" th:field="*{email}" type="email" name="Email" class="Insert" placeholder="Email"
+                        required>
+                    <input id="SENHA1" th:field="*{password}" onkeyup="active()" type="password" name="Senha"
+                        class="Insert" placeholder="Senha" minlength="6" required>
                     <input id="SENHA2" onkeyup="active_2()" type="password" name="Confirme_Senha" class="Insert"
                         placeholder="Confirme a Senha" min="6" required disabled>
                     <div class="mostrar">Mostrar</div>
-                    <div class="erro">Senhas devem ser iguais</div>
+                    <div class="erro"></div>
                     <label class="form-checkbox">
-                        <input type="checkbox" class="check-box" ><span>Eu aceito os termos e condições</span>
+                        <input type="checkbox" class="check-box" required><span>Eu aceito os termos e condições</span>
                         <span class="checkmark"></span>
                     </label>
 
-                    <button type="submit" class="btn-cadastro" onclick="botao()" >Registrar</button>
-                    <a class="loginpage" href="/Login">Ja tenho uma conta</a> 
+                    <button type="submit" class="btn-cadastro" onclick="botao()">Registrar</button>
+                    <span class="span">Ja tem uma conta? <a class="loginpage" th:href="@{/login}">Logar</a> </span>
                 </form>
-                <div id="resposta"></div>
-
             </div>
         </div>
     </div>
