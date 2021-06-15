@@ -6,7 +6,7 @@
 
 body {
     width: 100%;
-    background-image: url(./img/montain.jpg);
+    background-image: url(./img/teste5.jpeg);
     background-size: cover;
     background-position-y: center;
     background-attachment: fixed;
@@ -34,7 +34,8 @@ body {
     text-align: bottom;
 }
 
-.menu ul li .letter:hover, .letter-i:hover {
+.menu ul li .letter:hover,
+.letter-i:hover {
     font-weight: bold;
     color: orange;
 }
@@ -90,7 +91,7 @@ body {
 
 .Form-box {
     width: 380px;
-    height: 480px;
+    height: 410px;
     position: relative;
     margin: 6% auto;
     border-radius: 15px;
@@ -169,7 +170,7 @@ body {
     border-top: 0;
     border-right: 0;
     border-bottom: 1px solid orange;
-    outline: none;  
+    outline: none;
     border-radius: 30px;
     background: white;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
@@ -180,20 +181,21 @@ body {
     box-shadow: inset 0 0 8px rgb(255, 115, 0);
 }
 
-.span .loginpage{
+.span .loginpage {
     text-decoration: none;
     color: rgb(255, 153, 0);
     text-shadow: 0 0 12px rgb(0, 0, 0);
     font-weight: 700;
 }
-.span{
+
+.span {
     font-size: 12px;
     position: fixed;
-    top: 450px;
+    top: 390px;
     right: 110px;
 }
 
-.sucess{
+.sucess {
     position: relative;
     left: 115px;
     top: 25px;
@@ -203,8 +205,6 @@ body {
     font-weight: bolder;
     cursor: pointer;
 }
-
-
 
 .btn-cadastro {
     color: white;
@@ -233,11 +233,12 @@ body {
     transition: 0.5s;
 }
 
-.btn-login:hover, .btn-cadastro.active:hover {
+.btn-login:hover,
+.btn-cadastro.active:hover {
     background: transparent;
 }
 
-.alerta{
+.alerta {
     position: relative;
     left: 20%;
     top: 10%;
@@ -269,10 +270,12 @@ body {
     cursor: pointer;
     display: none;
 }
-.form-checkbox span{
+
+.form-checkbox span {
     color: rgb(255, 255, 255);
     font-size: 10px;
 }
+
 .form-checkbox {
     margin-top: 5px;
     display: block;
@@ -318,13 +321,16 @@ body {
     position: absolute;
     display: none;
 }
-.form-checkbox input:checked ~ .checkmark:after {
+
+.form-checkbox input:checked~.checkmark:after {
     display: block;
 }
-.form-checkbox:hover input ~ .checkmark {
+
+.form-checkbox:hover input~.checkmark {
     background-color: rgba(0, 0, 0, 0.185);
 }
-.form-checkbox input:checked ~ .checkmark {
+
+.form-checkbox input:checked~.checkmark {
     background-color: #ff9900;
 }
 
@@ -338,9 +344,7 @@ body {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
-
-
+}
 
 span {
     margin-left: 5px;

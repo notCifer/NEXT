@@ -1,7 +1,8 @@
 package com.app.controllers;
 
-import com.app.interfaces.UserService;
-import com.app.models.dto.CadastroDTO;
+import com.app.models.form.UsuarioFORM;
+import com.app.repositories.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,15 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/register")
 public class RegisterController {
 
-    private UserService US;
+    @Autowired
+    private UsuarioRepository usuarioR;
 
-    public RegisterController(UserService uS) {
-        US = uS;
-    }
-
-    @ModelAttribute("conta")
-    public CadastroDTO cadastroDTO() {
-        return new CadastroDTO();
+    @ModelAttribute("usuario")
+    public UsuarioFORM uForm() {
+        return new UsuarioFORM();
     }
 
     @GetMapping
@@ -29,9 +27,8 @@ public class RegisterController {
     }
 
     @PostMapping
-    public String Register(@ModelAttribute("conta") CadastroDTO DTO) {
-        US.save(DTO);
+    public String Register(@ModelAttribute("usuario") UsuarioFORM FORM) {
+        FORM.toForm(usuarioR);
         return "redirect:/register?sucess";
-
     }
 }

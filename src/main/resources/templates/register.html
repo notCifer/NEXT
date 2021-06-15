@@ -42,13 +42,11 @@
                 <div th:if="${param.sucess}">
                     <div><a class="sucess" href="" th:href="@{/login}">Conta Criada!</a> </div>
                 </div>
-                <form th:action="@{/register}" method="POST" th:object="${conta}" id="Cadastro" class="input-group"
+                <form th:action="@{/register}" method="POST" th:object="${usuario}" id="Cadastro" class="input-group"
                     onsubmit="return botao()">
-                    <input type="text" th:field="*{username}" name="Usuario" class="Insert" placeholder="Usuário"
-                        required autofocus="autofocus">
                     <input id="email" th:field="*{email}" type="email" name="Email" class="Insert" placeholder="Email"
                         required>
-                    <input id="SENHA1" th:field="*{password}" onkeyup="active()" type="password" name="Senha"
+                    <input id="SENHA1" th:field="*{senha}" onkeyup="active()" type="password" name="Senha"
                         class="Insert" placeholder="Senha" minlength="6" required>
                     <input id="SENHA2" onkeyup="active_2()" type="password" name="Confirme_Senha" class="Insert"
                         placeholder="Confirme a Senha" min="6" required disabled>

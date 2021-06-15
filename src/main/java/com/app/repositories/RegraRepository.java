@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RegraRepository extends JpaRepository<Regra,Long>{
-    Regra findByName(String name);
 }

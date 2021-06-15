@@ -8,9 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 @Entity
 public class Pessoa {
 
@@ -19,28 +16,20 @@ public class Pessoa {
     private Long id;
 
     @Column
-    @NotEmpty
-    @NotNull
     private String nome;
 
     @Column
-    @NotEmpty
-    @NotNull
     private String sobrenome;
 
     @Column(unique = true)
-    @NotEmpty
-    @NotNull
     private String cpf;
 
     @Column(name = "data_nascimento")
-    @NotEmpty
-    @NotNull
     private Date DTNASCIMENTO;
     
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
-    private Conta conta;
+    private Usuario conta;
 
     public Long getId() {
         return id;
@@ -50,11 +39,11 @@ public class Pessoa {
         this.id = id;
     }
 
-    public Conta getConta() {
+    public Usuario getConta() {
         return conta;
     }
 
-    public void setConta(Conta conta) {
+    public void setConta(Usuario conta) {
         this.conta = conta;
     }
 

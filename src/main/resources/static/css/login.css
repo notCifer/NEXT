@@ -6,7 +6,7 @@
 
 body {
     width: 100%;
-    background-image: url(./img/montain.jpg);
+    background-image: url(./img/teste5.jpeg);
     background-size: cover;
     background-position-y: center;
     background-attachment: fixed;
@@ -34,7 +34,8 @@ body {
     text-align: bottom;
 }
 
-.menu ul li .letter:hover, .letter-i:hover {
+.menu ul li .letter:hover,
+.letter-i:hover {
     font-weight: bold;
     color: orange;
 }
@@ -49,20 +50,19 @@ body {
     text-decoration: none;
 }
 
-.span .registerpage{
+.span .registerpage {
     text-decoration: none;
     color: rgb(255, 145, 0);
     text-shadow: 0 0 15px #000000;
     font-weight: 700;
 }
 
-.span{
+.span {
     position: fixed;
     right: 105px;
     top: 350px;
     font-size: 11px;
 }
-
 
 .letter-i {
     list-style: none;
@@ -184,7 +184,7 @@ body {
     border-top: 0;
     border-right: 0;
     border-bottom: 1px solid orange;
-    outline: none;  
+    outline: none;
     border-radius: 30px;
     background: white;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
@@ -212,10 +212,10 @@ body {
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-login:hover, .btn-cadastro.active:hover {
+.btn-login:hover,
+.btn-cadastro.active:hover {
     background: transparent;
 }
-
 
 .form-checkbox {
     margin-top: 10px;
@@ -262,13 +262,16 @@ body {
     position: absolute;
     display: none;
 }
-.form-checkbox input:checked ~ .checkmark:after {
+
+.form-checkbox input:checked~.checkmark:after {
     display: block;
 }
-.form-checkbox:hover input ~ .checkmark {
+
+.form-checkbox:hover input~.checkmark {
     background-color: rgba(0, 0, 0, 0.185);
 }
-.form-checkbox input:checked ~ .checkmark {
+
+.form-checkbox input:checked~.checkmark {
     background-color: #ff9900;
 }
 
@@ -282,9 +285,7 @@ body {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
-
-
+}
 
 span {
     margin-left: 5px;
@@ -443,7 +444,7 @@ a {
     animation: bar 0.5s;
 }
 
-.loginerro{
+.loginerro {
     font-size: 13px;
     font-weight: bold;
     color: #ff3c00;
