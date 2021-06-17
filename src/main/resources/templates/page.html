@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="pt-br" dir="ltr" xmlns="https://www.thymelead.org">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Sidebar Dashboard Template</title>
-    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+    <title>Next Point:</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
@@ -18,65 +19,90 @@
     <!--header area start-->
     <header>
         <label for="check">
-      <i class="fas fa-bars" id="sidebar_btn"></i>
-    </label>
+            <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
         <div class="left_area">
-            <ul class="ul">
-                <li class="logo">
-                    <img src="./css/img/navigation.png">
-                    <h1 class="logo-nome">Next Point</h1>
-                </li>
-            </ul>
+            <img src="./css/img/navigation.png">
+            <h1>NextPoint</h1>
         </div>
         <div class="right_area">
-            <a href="/logout" class="logout_btn">Logout</a>
+            <a href="/logout" class="logout_btn">Sair</a>
         </div>
     </header>
     <!--header area end-->
-    <!--mobile navigation bar start-->
-    <div class="mobile_nav">
-        <div class="nav_bar">
-            <img src="./css/img/navigation.png" class="mobile_profile_image" alt="">
-            <i class="fa fa-bars nav_btn"></i>
-        </div>
-        <div class="mobile_nav_items">
-            <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-            <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
-            <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
-            <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
-            <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
-            <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
-        </div>
-    </div>
-    <!--mobile navigation bar end-->
     <!--sidebar start-->
     <div class="sidebar">
         <div class="profile_info">
-            <img src="./css/img/student.png" class="profile_image" alt="">
-            <h4>Jessica</h4>
+            <img src="1.png" class="profile_image" alt="">
+            <h4>[[${#request.remoteUser}]]</h4>
         </div>
-        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
-        <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
-        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
-        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
-        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
+        <a href="#section1"><i class="fas fa-desktop"></i><span>Criar rota</span></a>
+        <a href="#section2"><i class="fas fa-table"></i><span>Saldo</span></a>
+        <a href="#section3"><i class="fas fa-th"></i><span>Minhas rotas</span></a>
+        <a href="#section4"><i class="fas fa-info-circle"></i><span>Sobre</span></a>
+        <a href="#perfil"><i class="fas fa-sliders-h"></i><span>Perfil</span></a>
     </div>
     <!--sidebar end-->
+    <!--mobile navigation bar start-->
+    <div class="mobile_nav">
+        <div class="block">
+            <div class="nav_bar">
+                <img src="1.png" class="mobile_profile_image" alt="">
+                <i class="fa fa-bars nav_btn"></i>
+            </div>
+            <div class="mobile_nav_items">
+                <a href="#section1"><i class="fas fa-desktop"></i><span>Criar rota</span></a>
+                <a href="#section2"><i class="fas fa-table"></i><span>Saldo</span></a>
+                <a href="#section3"><i class="fas fa-th"></i><span>Minhas rotas</span></a>
+                <a href="#section4"><i class="fas fa-info-circle"></i><span>Sobre</span></a>
+                <a href="#perfil"><i class="fas fa-sliders-h"></i><span>Perfil</span></a>
+            </div>
+        </div>
 
+    </div>
+    <!--mobile navigation bar end-->
     <div class="content">
-        <div class="card">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-        </div>
-        <div class="card">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-        </div>
-        <div class="card">
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-        </div>
+        <section id="section1">
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+        </section>
+        <section id="section2">
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+        </section>
+        <section id="section3">
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+        </section>
+        <section id="section4">
+            <div class="card">
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            </div>
+        </section>
+        <section id="perfil">
+            <form action="" class="perfil">
+                <h1>Nome</h1>
+                <input type="text" class="insert" placeholder="">
+                <h1>Sobrenome</h1>
+                <input type="text" class="insert" placeholder="">
+                <h1>CPF</h1>
+                <input type="text" class="insert" placeholder="   .   .   -  ">
+                <h1>Data de Nascimento</h1>
+                <input type="date" class="insert" placeholder="">
+                <h1>Email</h1>
+                <input type="text" class="insert" placeholder="">
+                <h1>Senha</h1>
+                <input type="password" class="insert" placeholder="">
+                <button type="submit" class="btn-perfil">Salvar</button>
+            </form>
+        </section>
     </div>
 
     <script type="text/javascript">
