@@ -14,6 +14,7 @@ function active() {
         btn.classList.remove("active");
     }
 }
+
 function botao() {
     if (S1.value != S2.value) {
         error.style.display = "block";
@@ -27,10 +28,11 @@ function botao() {
         return true;
     }
 }
+
 function active_2() {
     if (S2.value != "") {
         showBtn.style.display = "block";
-        showBtn.onclick = function () {
+        showBtn.onclick = function() {
             if ((S1.type == "password") && (S2.type == "password")) {
                 S1.type = "text";
                 S2.type = "text";
@@ -54,21 +56,21 @@ const rmCheck = document.getElementById("rememberMe"),
     passwordInput = document.getElementById("password");
 
 if (localStorage.checkbox && localStorage.checkbox !== "") {
-  rmCheck.setAttribute("checked", "checked");
-  emailInput.value = localStorage.username;
-  passwordInput.value = localStorage.password;
+    rmCheck.setAttribute("checked", "checked");
+    emailInput.value = localStorage.username;
+    passwordInput.value = localStorage.password;
 } else {
-  rmCheck.removeAttribute("checked");
-  emailInput.value = "";
+    rmCheck.removeAttribute("checked");
+    emailInput.value = "";
 }
 
 function lsRememberMe() {
-  if (rmCheck.checked && emailInput.value !== "") {
-    localStorage.username = emailInput.value;
-    localStorage.password = passwordInput.value
-    localStorage.checkbox = rmCheck.value;
-  } else {
-    localStorage.username = "";
-    localStorage.checkbox = "";
-  }
+    if (rmCheck.checked && emailInput.value !== "") {
+        localStorage.username = emailInput.value;
+        localStorage.password = passwordInput.value
+        localStorage.checkbox = rmCheck.value;
+    } else {
+        localStorage.username = "";
+        localStorage.checkbox = "";
+    }
 }

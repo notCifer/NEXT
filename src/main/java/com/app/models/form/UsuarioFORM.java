@@ -26,6 +26,7 @@ public class UsuarioFORM {
 
     public void setSenha(String senha) {
         this.senha = new BCryptPasswordEncoder().encode(senha);
+
     }
 
     public Usuario toForm(UsuarioRepository UsuarioR) {
