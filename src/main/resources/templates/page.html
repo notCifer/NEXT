@@ -63,9 +63,29 @@
             </div>
         </section>
         <section id="Saldo">
-            <div class="card">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            <div class="box-top">
+                <h3>SALTO TOTAL</h3>
+                <h1><span class=".span">R$ </span>0,00</h1>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Data</th>
+                            <th scope="col">valor</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="historico : ${historicos}">
+                            <td th:text="${historico.hoje}"></td>
+                            <td th:text="${historico.valor}"></td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="butons">
+                <button type="button" class="btn">Adicionar Saldo</button>
+                <button type="button" class="btn">Ver Historico</button>
             </div>
         </section>
         <section id="MinhasRotas">
@@ -83,17 +103,19 @@
                     <input type="file" class="myfile">
                 </div>
                 <h1>Nome</h1>
-                <input type="text" class="insert" placeholder="">
+                <input type="text" class="insert">
                 <h1>Sobrenome</h1>
-                <input type="text" class="insert" placeholder="">
+                <input type="text" class="insert">
                 <h1>CPF</h1>
                 <input type="text" class="insertdate" placeholder="   .   .   -  ">
                 <h1>Data de Nascimento</h1>
-                <input type="date" class="insertdate" placeholder="">
-                <h1>Email</h1>
-                <input type="text" class="insert" placeholder="">
-                <h1>Senha</h1>
-                <input type="password" class="insert" placeholder="">
+                <input type="date" class="insertdate">
+                <div>
+                    <h1>Email</h1>
+                    <input type="text" class="insert" placeholder="">
+                    <h1>Senha</h1>
+                    <input type="password" class="insert">
+                </div>
                 <button type="submit" class="btn-perfil">Salvar</button>
             </form>
         </section>

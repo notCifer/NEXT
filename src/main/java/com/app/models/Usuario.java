@@ -54,7 +54,7 @@ public class Usuario implements UserDetails {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
+	}	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
