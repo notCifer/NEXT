@@ -261,7 +261,13 @@ section {
 }
 
 .tabela {
+    margin-top: 235px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
     transition: opacity 1s ease-out;
+    box-shadow: 12px 12px 10px rgba(0, 0, 0, 0.651);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-4em);
@@ -278,14 +284,6 @@ section {
 th,
 td {
     padding: 8px;
-}
-
-table {
-    margin-top: 250px;
-    border-collapse: collapse;
-    border: 1px solid black;
-    text-align: center;
-    vertical-align: middle;
 }
 
 thead th {

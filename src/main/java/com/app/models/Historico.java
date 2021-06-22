@@ -1,9 +1,7 @@
 package com.app.models;
 
 import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Historico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Double valor;
     private LocalDateTime hoje;
@@ -21,6 +19,12 @@ public class Historico {
     private Usuario usuario;
 
     public Historico() {
+    } 
+
+    public Historico(Double valor, LocalDateTime hoje, Usuario usuario) {
+        this.valor = valor;
+        this.hoje = hoje;
+        this.usuario = usuario;
     }
 
     public Historico(Double valor) {

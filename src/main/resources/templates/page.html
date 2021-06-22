@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br" dir="ltr" xmlns="https://www.thymelead.org">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="pt-br" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -85,16 +85,21 @@
             <div class="butons">
                 <button type="button" class="saldo" id="btn">Adicionar Saldo</button>
                 <button type="button" class="historico" id="btn">Ver Historico</button>
+                <form action="#" th:action="@{/Saldo}" th:object="${historicoform}" method="POST">
+                    <div>
+                        <input type="text" id="valor" th:field="*{valor}" placeholder="Valor ">
+                    </div>
+                    <input type="submit" value="Adicionar">
+                </form>
             </div>
         </section>
         <section id="MinhasRotas">
-            <div class="card">
+            <div class="card ">
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
                     book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
             </div>
         </section>
         <section id="Sobre">
-
         </section>
         <section id="Perfil" class="divi">
             <form action="" class="perfil">
@@ -106,7 +111,7 @@
                 <h1>Sobrenome</h1>
                 <input type="text" class="insert">
                 <h1>CPF</h1>
-                <input type="text" class="insertdate" placeholder="   .   .   -  ">
+                <input type="text" class="insertdate" placeholder=" . . - ">
                 <h1>Data de Nascimento</h1>
                 <input type="date" class="insertdate">
                 <div>
@@ -120,14 +125,14 @@
         </section>
     </div>
 
-    <script type="text/javascript">
+    <script type="text/javascript ">
         $(document).ready(function() {
             $('.nav_btn').click(function() {
                 $('.mobile_nav_items').toggleClass('active');
             });
         });
     </script>
-    <script type="text/javascript">
+    <script type="text/javascript ">
         $(document).ready(function() {
             $('.historico').click(function() {
                 $('.tabela').toggleClass('mostrar');
