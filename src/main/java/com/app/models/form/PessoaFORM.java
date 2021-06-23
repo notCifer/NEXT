@@ -1,6 +1,8 @@
 package com.app.models.form;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import com.app.models.Pessoa;
 import com.app.models.Usuario;
 import com.app.repositories.PessoaRepository;
@@ -10,7 +12,7 @@ public class PessoaFORM {
     private String nome;
     private String sobrenome;
     private String cpf;
-    private LocalDate DTNASCIMENTO;
+    private String dtNasc;
 
     public String getNome() {
         return nome;
@@ -36,16 +38,18 @@ public class PessoaFORM {
         this.cpf = cpf;
     }
 
-    public LocalDate getDTNASCIMENTO() {
-        return DTNASCIMENTO;
+    public String getDtNasc() {
+        return dtNasc;
     }
 
-    public void setDTNASCIMENTO(LocalDate dTNASCIMENTO) {
-        DTNASCIMENTO = dTNASCIMENTO;
+    public void setDtNasc(String dtNasc) {
+        this.dtNasc = dtNasc;
     }
 
     public Pessoa toFORM(PessoaRepository pessoaR, Usuario usuario) {
-        Pessoa pessoa = new Pessoa(nome, sobrenome, cpf, DTNASCIMENTO, usuario);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate convertDate = LocalDate.parse(dtNasc, formatter);
+        Pessoa pessoa = new Pessoa(nome, sobrenome, cpf, convertDate, usuario);
         pessoaR.save(pessoa);
         return pessoa;
     }

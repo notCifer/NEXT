@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import javax.validation.Valid;
 import com.app.models.Historico;
+import com.app.models.Pessoa;
 import com.app.models.Usuario;
 import com.app.models.dto.HistoricoDTO;
 import com.app.models.form.HistoricoFORM;
@@ -45,6 +46,12 @@ public class PaginaController {
         loadHistorico();
         Usuario logado = usuarioS.getLogado(usuarioR);
         if (logado != null) {
+
+            Pessoa pessoa = pessoaR.findByConta(logado);
+            if (pessoa != null) {
+                model.addAttribute("pessoaform", pessoa);
+            }
+
             List<Historico> list = historicoR.findAllList(logado.getId());
             Double total = 0.0;
             for (Historico historico : list) {
@@ -76,9 +83,7 @@ public class PaginaController {
 
     @RequestMapping(value = "/Perfil", method = RequestMethod.POST)
     public String AddPessoa(@ModelAttribute PessoaFORM FORM, Errors errors) {
-
         Usuario logado = usuarioS.getLogado(usuarioR);
-
         if (errors.hasErrors()) {
             return "redirect:/nextpoint?pessoaerror#Perfil";
         }

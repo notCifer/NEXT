@@ -18,19 +18,18 @@ public class Pessoa {
     private String sobrenome;
     @Column(unique = true)
     private String cpf;
-    @Column(name = "data_nascimento")
-    private LocalDate DTNASCIMENTO;
+    private LocalDate dtNasc;
     @OneToOne(fetch = FetchType.LAZY)
     private Usuario conta;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String sobrenome, String cpf, LocalDate dTNASCIMENTO, Usuario conta) {
+    public Pessoa(String nome, String sobrenome, String cpf, LocalDate dtNasc, Usuario conta) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
-        DTNASCIMENTO = dTNASCIMENTO;
+        this.dtNasc = dtNasc;
         this.conta = conta;
     }
 
@@ -66,12 +65,12 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public LocalDate getDTNASCIMENTO() {
-        return DTNASCIMENTO;
+    public LocalDate getDtNasc() {
+        return dtNasc;
     }
 
-    public void setDTNASCIMENTO(LocalDate dTNASCIMENTO) {
-        DTNASCIMENTO = dTNASCIMENTO;
+    public void setDtNasc(LocalDate dtNasc) {
+        this.dtNasc = dtNasc;
     }
 
     public Usuario getConta() {
