@@ -8,9 +8,8 @@ import com.app.repositories.HistoricoRepository;
 
 public class HistoricoFORM {
 
-    @NotNull(message = "Valor inserido")
-    private Double valor;
     @NotNull
+    private Double valor;
     private Usuario usuario;
 
     public Double getValor() {

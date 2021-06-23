@@ -41,7 +41,6 @@ function active_2() {
             } else {
                 S1.type = "password";
                 S2.type = "password";
-
                 this.textContent = "Mostrar";
                 this.classList.remove("active");
             }
@@ -64,6 +63,7 @@ if (localStorage.checkbox && localStorage.checkbox !== "") {
     emailInput.value = "";
 }
 
+
 function lsRememberMe() {
     if (rmCheck.checked && emailInput.value !== "") {
         localStorage.username = emailInput.value;
@@ -73,4 +73,49 @@ function lsRememberMe() {
         localStorage.username = "";
         localStorage.checkbox = "";
     }
+}
+
+function isEmpty() {
+    var x = document.forms["formsaldo"]["valor"].value;
+    if (x == "") {
+        swal({
+            text: "Campo não pode estar vazio!",
+            icon: "error",
+            buttons: false,
+            timer: 2000,
+        }).then((will) => {
+            if (will) {
+                $(".onoffswitch-checkbox").prop('checked', false);
+            } else {
+                $("#all_petugas").click();
+            }
+        });
+        return false;
+    } else {
+        swal({
+            text: "Saldo atualizado!",
+            icon: "success",
+            button: false
+        });
+    }
+}
+
+function logout() {
+    swal({
+            title: "Tem certeza?",
+            icon: "warning",
+            buttons: ["Voltar", "Sair"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Usuario deslogado!", {
+                    icon: "success",
+                    button: false
+                });
+                var delayInMilliseconds = 1000;
+                setTimeout(function() { location.href = "/logout" }, delayInMilliseconds);
+            }
+            return false;
+        });
 }

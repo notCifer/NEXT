@@ -89,6 +89,21 @@ body {
     position: absolute;
 }
 
+.swal-modal {
+    transition: 1s;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.781);
+    backdrop-filter: blur(30px);
+}
+
+.swal-text {
+    color: #000000;
+}
+
+.swal-overlay {
+    backdrop-filter: blur(10px);
+}
+
 .Form-box {
     width: 380px;
     height: 410px;

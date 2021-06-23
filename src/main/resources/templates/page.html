@@ -25,7 +25,7 @@
             <h1>NextPoint</h1>
         </div>
         <div class="right_area">
-            <a href="/logout" class="logout_btn">Sair</a>
+            <a class="logout_btn" onclick="logout();">Sair</a>
         </div>
     </header>
     <div class="sidebar">
@@ -65,7 +65,7 @@
         <section id="Saldo">
             <div class="box-top">
                 <h3>SALTO TOTAL</h3>
-                <h1><span class=".span">R$ </span>0,00</h1>
+                <h1>[[${total}]]</h1>
                 <table class="tabela">
                     <thead>
                         <tr>
@@ -83,14 +83,17 @@
                 </table>
             </div>
             <div class="butons">
-                <button type="button" class="saldo" id="btn">Adicionar Saldo</button>
-                <button type="button" class="historico" id="btn">Ver Historico</button>
-                <form action="#" th:action="@{/Saldo}" th:object="${historicoform}" method="POST">
+                <form class="saldo" name="formsaldo" action="#" th:action="@{/Saldo}" th:object="${historicoform}" onsubmit="return isEmpty()" method="POST">
                     <div>
-                        <input type="text" id="valor" th:field="*{valor}" placeholder="Valor ">
+                        <input type="number" step="0.01" class="insertsaldo" name="valor" id="valor" th:field="*{valor}" placeholder="R$          ">
                     </div>
-                    <input type="submit" value="Adicionar">
+                    <div class="btns">
+                        <button type="button" class="btncancelar" id="btn2">Cancelar</button>
+                        <button type="submit" id="btn2">Adicionar</button>
+                    </div>
                 </form>
+                <button type="button" class="btnsaldo" id="btn">Adicionar Saldo</button>
+                <button type="button" class="btnhistorico" id="btn">Ver Historico</button>
             </div>
         </section>
         <section id="MinhasRotas">
@@ -134,11 +137,25 @@
     </script>
     <script type="text/javascript ">
         $(document).ready(function() {
-            $('.historico').click(function() {
+            $('.btnhistorico').click(function() {
                 $('.tabela').toggleClass('mostrar');
             });
         });
     </script>
+    <script type="text/javascript ">
+        $(document).ready(function() {
+            $('.btnsaldo').click(function() {
+                $('.saldo').toggleClass('mostrar');
+            });
+        });
+        $(document).ready(function() {
+            $('.btncancelar').click(function() {
+                $('.saldo').toggleClass('mostrar');
+            });
+        });
+    </script>
+    <script src="./js/fuction.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 

@@ -1,7 +1,13 @@
 package com.app.controllers;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+
+import javax.validation.Valid;
+
 import com.app.models.Historico;
 import com.app.models.Usuario;
 import com.app.models.dto.HistoricoDTO;
@@ -41,6 +47,15 @@ public class PaginaController {
         if (usuario.isPresent()) {
             Usuario us = usuario.get();
             List<Historico> list = historicoR.findAllList(us.getId());
+            Double total = 0.0;
+            for (Historico historico : list) {
+                total += historico.getValor();
+            }
+            Locale ptBr = new Locale("pt", "BR");
+            String valorString = NumberFormat.getCurrencyInstance(ptBr).format(total);
+            model.addAttribute("total", valorString);
+
+
             List<HistoricoDTO> listDTO = DTO.EntidDTO(list);
             ModelAndView mav = new ModelAndView("page");
             mav.addObject("historicos", listDTO);
@@ -50,16 +65,16 @@ public class PaginaController {
     }
 
     @RequestMapping(value = "/Saldo", method = RequestMethod.POST)
-    public String Add(@ModelAttribute HistoricoFORM FORM , Errors errors, Model model) {
+    public String Add(@ModelAttribute @Valid HistoricoFORM FORM , Errors errors, Model model) throws InterruptedException {
         if (errors.hasErrors()) {
-            return "redirect:/nextpoint#Saldo?error";
+            return "redirect:/nextpoint?saldoerror#Saldo";
         }
-        System.out.println(FORM);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String name = authentication.getName();
         Optional<Usuario> usuario = usuarioR.findByEmail(name);
         Usuario us = usuario.get();
         FORM.toFORM(historicoR, us);
+        TimeUnit.SECONDS.sleep(2);
         return "redirect:/nextpoint#Saldo";
 
     }

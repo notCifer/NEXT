@@ -1,7 +1,9 @@
 package com.app.models.dto;
 
+import java.text.NumberFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 import com.app.models.Historico;
@@ -30,7 +32,9 @@ public class HistoricoDTO {
     public HistoricoDTO EntidDTO(Historico historico) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         HistoricoDTO DTO = new HistoricoDTO();
-        DTO.setValor("R$ " + historico.getValor().toString());
+        Locale ptBr = new Locale("pt", "BR");
+        String valorString = NumberFormat.getCurrencyInstance(ptBr).format(historico.getValor());
+        DTO.setValor(valorString);
         DTO.setHoje(historico.getHoje().format(formatter));
         return DTO;
     }
