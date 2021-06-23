@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -14,6 +15,8 @@ public class Pessoa {
     @Id
     @GeneratedValue
     private Long id;
+    @Lob
+    private byte[] image;
     private String nome;
     private String sobrenome;
     @Column(unique = true)
@@ -25,7 +28,8 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String sobrenome, String cpf, LocalDate dtNasc, Usuario conta) {
+    public Pessoa(byte[] image, String nome, String sobrenome, String cpf, LocalDate dtNasc, Usuario conta) {
+        this.image = image;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.cpf = cpf;
@@ -39,6 +43,14 @@ public class Pessoa {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getNome() {

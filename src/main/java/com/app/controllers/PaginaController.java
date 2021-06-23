@@ -1,9 +1,14 @@
 package com.app.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+import javax.imageio.ImageIO;
 import javax.validation.Valid;
 import com.app.models.Historico;
 import com.app.models.Pessoa;
@@ -22,6 +27,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -40,7 +47,7 @@ public class PaginaController {
     private UsuarioServices usuarioS;
 
     @RequestMapping(value = "/nextpoint", method = RequestMethod.GET)
-    public ModelAndView home(Model model) {
+    public ModelAndView home(Model model) throws IOException {
         HistoricoDTO DTO = new HistoricoDTO();
         loadPessoa();
         loadHistorico();
@@ -49,6 +56,9 @@ public class PaginaController {
 
             Pessoa pessoa = pessoaR.findByConta(logado);
             if (pessoa != null) {
+                byte[] bytes = pessoa.getImage();
+                String imageBase64 = Base64.getEncoder().encodeToString(bytes);
+                model.addAttribute("imagem", imageBase64);
                 model.addAttribute("pessoaform", pessoa);
             }
 
@@ -82,12 +92,16 @@ public class PaginaController {
     // --------------PERFIL NÃO ESTA FUNCIONANDO--------------
 
     @RequestMapping(value = "/Perfil", method = RequestMethod.POST)
-    public String AddPessoa(@ModelAttribute PessoaFORM FORM, Errors errors) {
+    public String AddPessoa(@ModelAttribute PessoaFORM FORM, @RequestParam("myfile") MultipartFile myfile, Errors errors) throws IOException {
+
+        byte[] imagebyte = myfile.getBytes();
+
         Usuario logado = usuarioS.getLogado(usuarioR);
         if (errors.hasErrors()) {
             return "redirect:/nextpoint?pessoaerror#Perfil";
         }
-        FORM.toFORM(pessoaR, logado);
+
+        FORM.toFORM(pessoaR, logado,imagebyte);
         return "redirect:/nextpoint#Perfil";
     }
 
@@ -101,6 +115,10 @@ public class PaginaController {
     @ModelAttribute("pessoaform")
     public PessoaFORM loadPessoa() {
         return new PessoaFORM();
+    }
+    @ModelAttribute("imagem")
+    public String loadImage(){
+        return null;
     }
 
 }

@@ -1,8 +1,8 @@
 package com.app.models.form;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import com.app.models.Pessoa;
 import com.app.models.Usuario;
 import com.app.repositories.PessoaRepository;
@@ -46,11 +46,16 @@ public class PessoaFORM {
         this.dtNasc = dtNasc;
     }
 
-    public Pessoa toFORM(PessoaRepository pessoaR, Usuario usuario) {
+    public Pessoa toFORM(PessoaRepository pessoaR, Usuario usuario, byte[] image) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate convertDate = LocalDate.parse(dtNasc, formatter);
-        Pessoa pessoa = new Pessoa(nome, sobrenome, cpf, convertDate, usuario);
-        pessoaR.save(pessoa);
+        Pessoa pessoa = new Pessoa(image, nome, sobrenome, cpf, convertDate, usuario);
+        try {
+            System.out.println(image);
+            pessoaR.save(pessoa);
+        } catch (Exception e) {
+            e.getCause();
+        }  
         return pessoa;
     }
 

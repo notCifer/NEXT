@@ -30,7 +30,7 @@
     </header>
     <div class="sidebar">
         <div class="profile_info">
-            <img src="1.png" class="profile_image" alt="">
+            <img th:src="'data:image/jpeg;base64,' + ${imagem}" class="profile_image" alt="">
             <h4>[[${#request.remoteUser}]]</h4>
         </div>
         <a href="#CriarRota"><i class="fas fa-desktop"></i><span>Criar rota</span></a>
@@ -42,7 +42,7 @@
     <div class="mobile_nav">
         <div class="block">
             <div class="nav_bar">
-                <img src="1.png" class="mobile_profile_image" alt="">
+                <img th:src="'data:image/jpeg;base64,' + ${imagem}" class="mobile_profile_image" alt="">
                 <i class="fa fa-bars nav_btn"></i>
             </div>
             <div class="mobile_nav_items">
@@ -105,9 +105,9 @@
         <section id="Sobre">
         </section>
         <section id="Perfil" class="divi">
-            <form class="perfil" action="#" th:action="@{/Perfil}" th:object="${pessoaform}" method="POST">
+            <form class="perfil" action="#" th:action="@{/Perfil}" th:object="${pessoaform}" method="POST" enctype="multipart/form-data">
                 <div class="wrapper">
-                    <input type="file" class="myfile" accept="image/png, image/jpeg">
+                    <input type="file" class="myfile" accept="image/png, image/jpeg" name="myfile">
                 </div>
                 <h1>Nome</h1>
                 <input type="text" class="insert" th:field="*{nome}">
