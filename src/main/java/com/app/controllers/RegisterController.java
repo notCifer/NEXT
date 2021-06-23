@@ -4,6 +4,7 @@ import com.app.models.form.UsuarioFORM;
 import com.app.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +28,18 @@ public class RegisterController {
     }
 
     @PostMapping
-    public String Register(@ModelAttribute("usuario") UsuarioFORM FORM) {
-        FORM.toForm(usuarioR);
-        return "redirect:/register?sucess";
+    public String Register(@ModelAttribute("usuario") UsuarioFORM FORM, Errors errors) {
+
+        if (errors.hasErrors()) {
+            return "redirect:/register?error";
+        }
+        try {
+            FORM.toForm(usuarioR);
+            return "redirect:/register?sucess";
+        } catch (Exception e) {
+            return "redirect:/register?email";
+        }
+
     }
 
 }

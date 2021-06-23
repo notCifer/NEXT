@@ -89,6 +89,15 @@ body {
     position: absolute;
 }
 
+.loginerro {
+    position: relative;
+    top: 30px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #ff3c00;
+    text-align: center;
+}
+
 .swal-modal {
     transition: 1s;
     background-color: rgb(255, 255, 255);
