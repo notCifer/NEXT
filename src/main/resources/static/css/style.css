@@ -544,15 +544,18 @@ tbody tr:nth-child(even) {
     margin: 20px auto;
     border: 3px solid rgb(255, 123, 0);
     border-radius: 50%;
-    background: url("./img/userimage.gif");
-    background-position: center top;
-    background-size: cover;
     overflow: hidden;
+}
+
+.imageminput {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
 }
 
 .myfile {
     position: relative;
-    top: -25px;
+    top: -200px;
     bottom: 0;
     outline: none;
     color: transparent;

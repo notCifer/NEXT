@@ -1,14 +1,13 @@
 package com.app.controllers;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.text.NumberFormat;
 import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-import javax.imageio.ImageIO;
 import javax.validation.Valid;
 import com.app.models.Historico;
 import com.app.models.Pessoa;
@@ -117,8 +116,11 @@ public class PaginaController {
         return new PessoaFORM();
     }
     @ModelAttribute("imagem")
-    public String loadImage(){
-        return null;
+    public String loadImage() throws IOException{
+        File fi = new File("C:/Users/Allan/Desktop/WORKSPACE/NextPoint/src/main/resources/static/css/img/userimage.gif");
+        byte[] bytes = Files.readAllBytes(fi.toPath());
+        String imageBase64 = Base64.getEncoder().encodeToString(bytes);
+        return imageBase64;
     }
 
 }

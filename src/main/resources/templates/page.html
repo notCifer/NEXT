@@ -106,7 +106,9 @@
         </section>
         <section id="Perfil" class="divi">
             <form class="perfil" action="#" th:action="@{/Perfil}" th:object="${pessoaform}" method="POST" enctype="multipart/form-data">
+
                 <div class="wrapper">
+                    <img th:src="'data:image/jpeg;base64,' + ${imagem}" alt="" class="imageminput">
                     <input type="file" class="myfile" accept="image/png, image/jpeg" name="myfile">
                 </div>
                 <h1>Nome</h1>
