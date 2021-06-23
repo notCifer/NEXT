@@ -29,7 +29,7 @@ public class UsuarioFORM {
 
     }
 
-    public Usuario toForm(UsuarioRepository UsuarioR) {
+    public Usuario toFORM(UsuarioRepository UsuarioR) {
         Usuario usuario = new Usuario(email, senha);
         UsuarioR.save(usuario);
         return usuario;

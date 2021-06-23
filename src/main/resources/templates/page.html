@@ -105,18 +105,18 @@
         <section id="Sobre">
         </section>
         <section id="Perfil" class="divi">
-            <form action="" class="perfil">
+            <form class="perfil" action="#" th:action="@{/Perfil}" th:object="${pessoaform}" method="POST">
                 <div class="wrapper">
                     <input type="file" class="myfile">
                 </div>
                 <h1>Nome</h1>
-                <input type="text" class="insert">
+                <input type="text" class="insert" th:field="*{nome}">
                 <h1>Sobrenome</h1>
-                <input type="text" class="insert">
+                <input type="text" class="insert" th:field="*{sobrenome}">
                 <h1>CPF</h1>
-                <input type="text" class="insertdate" placeholder=" . . - ">
+                <input type="text" class="insertdate" placeholder=" . . - " th:field="*{cpf}">
                 <h1>Data de Nascimento</h1>
-                <input type="date" class="insertdate">
+                <input type="date" class="insertdate" th:field="*{DTNASCIMENTO}">
                 <div>
                     <h1>Email</h1>
                     <input type="text" class="insert" placeholder="">

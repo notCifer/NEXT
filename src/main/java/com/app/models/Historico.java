@@ -19,7 +19,7 @@ public class Historico {
     private Usuario usuario;
 
     public Historico() {
-    } 
+    }
 
     public Historico(Double valor, LocalDateTime hoje, Usuario usuario) {
         this.valor = valor;
@@ -54,7 +54,5 @@ public class Historico {
     public void setHoje(LocalDateTime hoje) {
         this.hoje = hoje;
     }
-
-    
 
 }

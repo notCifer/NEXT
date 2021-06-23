@@ -1,7 +1,6 @@
 package com.app.repositories;
 
 import java.util.List;
-
 import com.app.models.Historico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

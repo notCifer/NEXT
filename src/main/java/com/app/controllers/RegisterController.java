@@ -34,7 +34,7 @@ public class RegisterController {
             return "redirect:/register?error";
         }
         try {
-            FORM.toForm(usuarioR);
+            FORM.toFORM(usuarioR);
             return "redirect:/register?sucess";
         } catch (Exception e) {
             return "redirect:/register?email";
