@@ -57,11 +57,38 @@
     </div>
     <div class="content">
         <section id="CriarRota">
-            <button onclick="move()">Click Me</button>
-            <form id="linhaform" class="formlinha">
-                <div id="myProgress">
-                    <div id="myBar"></div>
+            <div id="stepProgressBar">
+                <div class="step">
+                    <p class="step-text">Terminal Sitio Cercado</p>
+                    <div class="bullet">1</div>
                 </div>
+                <div class="step">
+                    <p class="step-text">Tubo Chapinhal</p>
+                    <div class="bullet">2</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Terminal Pinheirinho</p>
+                    <div class="bullet">3</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Terminal Capão Raso</p>
+                    <div class="bullet ">4</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Agua Verde</p>
+                    <div class="bullet ">5</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Westephalen</p>
+                    <div class="bullet ">6</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Guadalupe</p>
+                    <div class="bullet ">7</div>
+                </div>
+            </div>
+            <form id="linhaform" class="formlinha">
+
                 <ul class="dropdown" id="d">
                     <input type="text" value="Selecione um Linha" readonly="" id="v">
                     <i>+</i>
@@ -84,6 +111,7 @@
                     </ul>
                 </ul>
             </form>
+
         </section>
         <section id="Saldo">
             <div class="box-top">
@@ -175,6 +203,7 @@
         var dropdown = document.getElementById('d');
         var options = document.getElementById('o');
         var input = document.getElementById('v');
+        var progress = document.getElementById('stepProgressBar');
 
         dropdown.addEventListener('click', function() {
             this.classList.toggle('show');
@@ -183,6 +212,7 @@
             const listItem = event.target;
             const value = listItem.attributes.name.value;
             input.value = value;
+            progress.classList.toggle('show');
         })
 
         function getValue() {
@@ -195,35 +225,18 @@
         var dropdown1 = document.getElementById('d1');
         var options1 = document.getElementById('o1');
         var input1 = document.getElementById('v1');
+        var dropdown2 = document.getElementById('d2');
+        var options2 = document.getElementById('o2');
+        var input2 = document.getElementById('v2');
 
         dropdown1.addEventListener('click', function() {
             this.classList.toggle('show');
         })
         options1.addEventListener('click', function(event) {
-            var elem = document.getElementById("myBar");
             const listItem = event.target;
             const value2 = listItem.attributes.name.value;
             input1.value = value2;
-            if (value2 == "Terminal Sitio Cercado") {
-                elem.style.marginLeft = "0%";
-            } else if (value2 == "Chapinhal") {
-                elem.style.marginLeft = "10%";
-            } else if (value2 == "Terminal Pinheirinho") {
-                elem.style.marginLeft = "20%";
-            } else if (value2 == "Terminal Capão Raso") {
-                elem.style.marginLeft = "40%";
-            } else if (value2 == "Agua Verde") {
-                elem.style.marginLeft = "60%";
-            } else if (value2 == "Westephalen") {
-                elem.style.marginLeft = "75%";
-            } else {
-                elem.style.marginLeft = "100%";
-            }
         })
-        var dropdown2 = document.getElementById('d2');
-        var options2 = document.getElementById('o2');
-        var input2 = document.getElementById('v2');
-        var elem = document.getElementById("myBar");
 
         dropdown2.addEventListener('click', function() {
             this.classList.toggle('show');
@@ -232,78 +245,121 @@
             const listItem = event.target;
             const value = listItem.attributes.name.value;
             input2.value = value;
-            elem.style.width = "100px";
-            console.log(value);
-            if (value == "Terminal Sitio Cercado") {
-                elem.style.marginRight = "1000px";
-            } else if (value == "Chapinhal") {
-                elem.style.marginRight = "10%";
-            } else if (value == "Terminal Pinheirinho") {
-                elem.style.marginRight = "20%";
-            } else if (value == "Terminal Capão Raso") {
-                elem.style.marginRight = "40%";
-            } else if (value == "Agua Verde") {
-                elem.style.marginRight = "60%";
-            } else if (value == "Westephalen") {
-                elem.style.marginRight = "75%";
-            } else {
-                elem.style.marginRight = "100%";
-            }
-            // i = 1;
-            // var width = 1;
-            // console.log(width);
-            // if (value == "Terminal Sitio Cercado") {
-            //     var id = setInterval(frame, 10);
-
-            //     function frame() {
-            //         if (width >= 10) {
-            //             clearInterval(id);
-            //             i = 0;
-            //         } else {
-            //             width++;
-            //             elem.style.marginRight = width + "%";
-            //         }
-            //     }
-            // } else if (value == "Chapinhal") {
-            //     var id = setInterval(frame, 10);
-
-            //     function frame() {
-            //         if (width >= 20) {
-            //             clearInterval(id);
-            //             i = 0;
-            //         } else {
-            //             width++;
-            //             elem.style.marginRight = width + "%";
-            //         }
-            //     }
-            // } else if (value == "Terminal Capão Raso") {
-
-            //     var id = setInterval(frame, 10);
-
-            //     function frame() {
-            //         if (width >= 50) {
-            //             clearInterval(id);
-            //             i = 0;
-            //         } else {
-            //             width++;
-            //             elem.style.marginRight = width + "%";
-            //         }
-            //     }
-            //     if (value == "Terminal Pinheirinho") {
-            //         var id = setInterval(frame, 10);
-
-            //         function frame() {
-            //             if (width >= 100) {
-            //                 clearInterval(id);
-            //                 i = 0;
-            //             } else {
-            //                 width++;
-            //                 elem.style.width = width + "%";
-            //             }
-            //         }
-            //     }
-            // }
         })
+    </script>
+    <script type="text/javascript">
+        const previousBtn = document.getElementById('previousBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const finishBtn = document.getElementById('finishBtn');
+        const content = document.getElementById('content');
+        const bullets = [...document.querySelectorAll('.bullet')];
+
+        const MAX_STEPS = 7;
+        let currentStep = 1;
+
+        var dropdown1 = document.getElementById('d1');
+        var options1 = document.getElementById('o1');
+        var input1 = document.getElementById('v1');
+        var dropdown2 = document.getElementById('d2');
+        var options2 = document.getElementById('o2');
+        var input2 = document.getElementById('v2');
+
+        options1.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value2 = listItem.attributes.name.value;
+            input1.value = value2;
+            if (value2 == "Terminal Sitio Cercado") {
+                currentStep = 2;
+                bullets[currentStep - 1].classList.remove('completed');
+                currentStep = 1;
+                bullets[currentStep - 1].classList.add('completed');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value2 == "Chapinhal") {
+                bullets[currentStep - 1].classList.remove('completed');
+                currentStep = 2;
+                bullets[currentStep - 1].classList.add('completed');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value2 == "Terminal Pinheirinho") {
+                bullets[currentStep - 1].classList.remove('completed');
+                bullets[currentStep - 2].classList.remove('completed');
+                currentStep = 3;
+                bullets[currentStep - 1].classList.add('completed');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value2 == "Terminal Capão Raso") {
+                bullets[currentStep - 1].classList.remove('completed');
+                bullets[currentStep - 2].classList.remove('completed');
+                bullets[currentStep - 3].classList.remove('completed');
+                currentStep = 4;
+                bullets[currentStep - 1].classList.add('completed');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value2 == "Agua Verde") {
+                bullets[currentStep - 1].classList.remove('completed');
+                bullets[currentStep - 2].classList.remove('completed');
+                bullets[currentStep - 3].classList.remove('completed');
+                bullets[currentStep - 4].classList.remove('completed');
+                currentStep = 5;
+                bullets[currentStep - 1].classList.add('completed');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value2 == "Westephalen") {
+                bullets[currentStep - 1].classList.remove('completed');
+                bullets[currentStep - 2].classList.remove('completed');
+                bullets[currentStep - 3].classList.remove('completed');
+                bullets[currentStep - 4].classList.remove('completed');
+                bullets[currentStep - 5].classList.remove('completed');
+                currentStep = 6;
+                bullets[currentStep - 1].classList.add('completed');
+                content.innerText = `Step Number ${currentStep}`;
+            }
+        })
+
+        options2.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input2.value = value;
+            if (value == "Terminal Sitio Cercado") {
+                currentStep = 1;
+                bullets[currentStep - 1].classList.add('completedBack');
+                content.innerText = `Step Number ${currentStep}`;
+                bullets[currentStep - 2].classList.remove('completedBack');
+                bullets[currentStep - 3].classList.remove('completedBack');
+                bullets[currentStep - 4].classList.remove('completedBack');
+                bullets[currentStep - 5].classList.remove('completedBack');
+                bullets[currentStep - 6].classList.remove('completedBack');
+
+            } else if (value == "Chapinhal") {
+                currentStep = 2;
+                bullets[currentStep - 1].classList.add('completedBack');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value == "Terminal Pinheirinho") {
+                currentStep = 3;
+                bullets[currentStep - 1].classList.add('completedBack');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value == "Terminal Capão Raso") {
+                currentStep = 4;
+                bullets[currentStep - 1].classList.add('completedBack');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value == "Agua Verde") {
+                currentStep = 5;
+                bullets[currentStep - 1].classList.add('completedBack');
+                content.innerText = `Step Number ${currentStep}`;
+            } else if (value == "Westephalen") {
+                currentStep = 6;
+                bullets[currentStep - 1].classList.add('completedBack');
+                content.innerText = `Step Number ${currentStep}`;
+            }
+        });
+
+
+        previousBtn.addEventListener('click', () => {
+            bullets[currentStep - 2].classList.remove('completed');
+            currentStep -= 1;
+            nextBtn.disabled = false;
+            finishBtn.disabled = true;
+            if (currentStep === 1) {
+                previousBtn.disabled = true;
+            }
+            content.innerText = `Step Number ${currentStep}`;
+        });
     </script>
 
     <script src="./js/fuction.js "></script>

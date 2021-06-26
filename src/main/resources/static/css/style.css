@@ -188,13 +188,103 @@ section {
 
 /* -------------------------CRIAR ROTA------------------------- */
 
-#CriarRota {
-    padding-top: 120px;
+#stepProgressBar {
+    position: relative;
+    top: 30%;
+    display: inline-flex;
+    padding: 1%;
+    border-radius: 10px;
+    background: #fdfdfd0e;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.774);
+    backdrop-filter: blur(60px);
+    margin: 5%;
+    z-index: 5;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 10%;
+    opacity: 0;
+    transition: all 500ms ease-in-out;
+}
+
+#stepProgressBar.show {
+    opacity: 1;
+}
+
+.step {
+    text-align: center;
+}
+
+.step-text {
+    font-size: 0.8vw;
+    margin-bottom: 5%;
+    color: #ffa600;
+}
+
+.bullet {
+    border: 1px solid #ffa600;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    color: #ffa600;
+    font-weight: bolder;
+    display: inline-block;
+    position: relative;
+    transition: background-color 500ms;
+    line-height: 20px;
+}
+
+.bullet.completed {
+    color: white;
+    background-color: #ff9100;
+    box-shadow: 1px 1px 30px #ff9100;
+}
+
+.bullet.completedBack {
+    color: white;
+    background-color: #ff9100;
+    box-shadow: 1px 1px 30px #ff9100;
+}
+
+
+/* Base styles and helper stuff */
+
+.hidden {
+    display: none;
+}
+
+button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    transition: 250ms background-color;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+
+button:disabled:hover {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+    padding: 40px;
 }
 
 .formlinha {
     display: inline-flex;
-    margin-top: 10%;
     width: 100%;
     height: 500px;
     border-radius: 10px;
@@ -202,23 +292,6 @@ section {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.774);
     backdrop-filter: blur(5px);
-}
-
-#myProgress {
-    position: absolute;
-    top: 20%;
-    margin: 5%;
-    width: 90%;
-    background-color: rgba(128, 128, 128, 0.39);
-    z-index: 6;
-    border-radius: 10px;
-}
-
-#myBar {
-    width: 1%;
-    height: 30px;
-    background: linear-gradient(to right, rgb(255, 166, 0), rgb(255, 102, 0));
-    border-radius: 10px;
 }
 
 .dropdown {

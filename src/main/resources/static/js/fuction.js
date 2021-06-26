@@ -53,9 +53,6 @@ function active_2() {
 
 
 
-
-
-
 function isEmpty() {
     var x = document.forms["formsaldo"]["valor"].value;
     if (x == "") {
