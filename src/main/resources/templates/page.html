@@ -57,7 +57,11 @@
     </div>
     <div class="content">
         <section id="CriarRota">
+            <button onclick="move()">Click Me</button>
             <form id="linhaform" class="formlinha">
+                <div id="myProgress">
+                    <div id="myBar"></div>
+                </div>
                 <ul class="dropdown" id="d">
                     <input type="text" value="Selecione um Linha" readonly="" id="v">
                     <i>+</i>
@@ -186,6 +190,8 @@
         }
     </script>
     <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
         var dropdown1 = document.getElementById('d1');
         var options1 = document.getElementById('o1');
         var input1 = document.getElementById('v1');
@@ -194,19 +200,30 @@
             this.classList.toggle('show');
         })
         options1.addEventListener('click', function(event) {
+            var elem = document.getElementById("myBar");
             const listItem = event.target;
-            const value = listItem.attributes.name.value;
-            input1.value = value;
+            const value2 = listItem.attributes.name.value;
+            input1.value = value2;
+            if (value2 == "Terminal Sitio Cercado") {
+                elem.style.marginLeft = "0%";
+            } else if (value2 == "Chapinhal") {
+                elem.style.marginLeft = "10%";
+            } else if (value2 == "Terminal Pinheirinho") {
+                elem.style.marginLeft = "20%";
+            } else if (value2 == "Terminal Capão Raso") {
+                elem.style.marginLeft = "40%";
+            } else if (value2 == "Agua Verde") {
+                elem.style.marginLeft = "60%";
+            } else if (value2 == "Westephalen") {
+                elem.style.marginLeft = "75%";
+            } else {
+                elem.style.marginLeft = "100%";
+            }
         })
-
-        function getValue() {
-            return value;
-        }
-    </script>
-    <script type="text/javascript">
         var dropdown2 = document.getElementById('d2');
         var options2 = document.getElementById('o2');
         var input2 = document.getElementById('v2');
+        var elem = document.getElementById("myBar");
 
         dropdown2.addEventListener('click', function() {
             this.classList.toggle('show');
@@ -215,11 +232,78 @@
             const listItem = event.target;
             const value = listItem.attributes.name.value;
             input2.value = value;
-        })
+            elem.style.width = "100px";
+            console.log(value);
+            if (value == "Terminal Sitio Cercado") {
+                elem.style.marginRight = "1000px";
+            } else if (value == "Chapinhal") {
+                elem.style.marginRight = "10%";
+            } else if (value == "Terminal Pinheirinho") {
+                elem.style.marginRight = "20%";
+            } else if (value == "Terminal Capão Raso") {
+                elem.style.marginRight = "40%";
+            } else if (value == "Agua Verde") {
+                elem.style.marginRight = "60%";
+            } else if (value == "Westephalen") {
+                elem.style.marginRight = "75%";
+            } else {
+                elem.style.marginRight = "100%";
+            }
+            // i = 1;
+            // var width = 1;
+            // console.log(width);
+            // if (value == "Terminal Sitio Cercado") {
+            //     var id = setInterval(frame, 10);
 
-        function getValue() {
-            return value;
-        }
+            //     function frame() {
+            //         if (width >= 10) {
+            //             clearInterval(id);
+            //             i = 0;
+            //         } else {
+            //             width++;
+            //             elem.style.marginRight = width + "%";
+            //         }
+            //     }
+            // } else if (value == "Chapinhal") {
+            //     var id = setInterval(frame, 10);
+
+            //     function frame() {
+            //         if (width >= 20) {
+            //             clearInterval(id);
+            //             i = 0;
+            //         } else {
+            //             width++;
+            //             elem.style.marginRight = width + "%";
+            //         }
+            //     }
+            // } else if (value == "Terminal Capão Raso") {
+
+            //     var id = setInterval(frame, 10);
+
+            //     function frame() {
+            //         if (width >= 50) {
+            //             clearInterval(id);
+            //             i = 0;
+            //         } else {
+            //             width++;
+            //             elem.style.marginRight = width + "%";
+            //         }
+            //     }
+            //     if (value == "Terminal Pinheirinho") {
+            //         var id = setInterval(frame, 10);
+
+            //         function frame() {
+            //             if (width >= 100) {
+            //                 clearInterval(id);
+            //                 i = 0;
+            //             } else {
+            //                 width++;
+            //                 elem.style.width = width + "%";
+            //             }
+            //         }
+            //     }
+            // }
+        })
     </script>
 
     <script src="./js/fuction.js "></script>

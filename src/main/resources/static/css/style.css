@@ -204,6 +204,23 @@ section {
     backdrop-filter: blur(5px);
 }
 
+#myProgress {
+    position: absolute;
+    top: 20%;
+    margin: 5%;
+    width: 90%;
+    background-color: rgba(128, 128, 128, 0.39);
+    z-index: 6;
+    border-radius: 10px;
+}
+
+#myBar {
+    width: 1%;
+    height: 30px;
+    background: linear-gradient(to right, rgb(255, 166, 0), rgb(255, 102, 0));
+    border-radius: 10px;
+}
+
 .dropdown {
     margin-left: 2%;
     margin-right: 2%;
