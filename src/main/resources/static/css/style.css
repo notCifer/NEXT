@@ -58,7 +58,7 @@ header {
     font-weight: 600;
     color: #fff;
     transition: 0.5s;
-    transition-property: background;
+    cursor: pointer;
 }
 
 .logout_btn:hover {
@@ -206,6 +206,7 @@ section {
 
 .dropdown {
     margin-left: 2%;
+    margin-right: 2%;
     margin-top: 280px;
     position: relative;
     width: 30%;
@@ -217,7 +218,7 @@ section {
     cursor: pointer;
 }
 
-.dropdown:active {
+.dropdown:hover {
     background: #00000010;
     backdrop-filter: blur(5px);
     border: 2px orange solid;
@@ -696,9 +697,11 @@ tbody tr:nth-child(even) {
     }
     .mobile_nav {
         display: block;
-    }
-    .block {
         position: fixed;
+        z-index: 1;
+    }
+    header {
+        display: block;
         z-index: 2;
     }
     .nav_bar {
@@ -730,7 +733,7 @@ tbody tr:nth-child(even) {
     }
     .mobile_nav_items {
         position: fixed;
-        z-index: 2;
+        z-index: 0;
         width: 100%;
         background: rgba(0, 0, 0, 0.226);
         box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.4);
@@ -758,8 +761,11 @@ tbody tr:nth-child(even) {
     .active {
         display: block;
     }
+    .formlinha {
+        margin-top: 20%;
+    }
     .perfil {
-        position: absolute;
-        z-index: 1;
+        display: block;
+        z-index: 0;
     }
 }

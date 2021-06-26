@@ -5,6 +5,7 @@ const btn = document.querySelector(".btn-cadastro")
 const showBtn = document.querySelector(".mostrar")
 var delay = 1000;
 
+
 function active() {
     if (S1.value.length >= 1) {
         S2.removeAttribute("disabled", "");
@@ -50,30 +51,10 @@ function active_2() {
     }
 }
 
-const rmCheck = document.getElementById("rememberMe"),
-    emailInput = document.getElementById("username"),
-    passwordInput = document.getElementById("password");
-
-if (localStorage.checkbox && localStorage.checkbox !== "") {
-    rmCheck.setAttribute("checked", "checked");
-    emailInput.value = localStorage.username;
-    passwordInput.value = localStorage.password;
-} else {
-    rmCheck.removeAttribute("checked");
-    emailInput.value = "";
-}
 
 
-function lsRememberMe() {
-    if (rmCheck.checked && emailInput.value !== "") {
-        localStorage.username = emailInput.value;
-        localStorage.password = passwordInput.value
-        localStorage.checkbox = rmCheck.value;
-    } else {
-        localStorage.username = "";
-        localStorage.checkbox = "";
-    }
-}
+
+
 
 function isEmpty() {
     var x = document.forms["formsaldo"]["valor"].value;

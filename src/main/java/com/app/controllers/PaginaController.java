@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
@@ -12,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 import javax.validation.Valid;
 import com.app.models.Historico;
 import com.app.models.Linha;
-import com.app.models.Onibus;
 import com.app.models.Parada;
 import com.app.models.Pessoa;
 import com.app.models.Usuario;
@@ -21,7 +19,6 @@ import com.app.models.form.HistoricoFORM;
 import com.app.models.form.PessoaFORM;
 import com.app.repositories.HistoricoRepository;
 import com.app.repositories.LinhaRepository;
-import com.app.repositories.OnibusRepository;
 import com.app.repositories.ParadaRepository;
 import com.app.repositories.PessoaRepository;
 import com.app.repositories.UsuarioRepository;
@@ -54,9 +51,6 @@ public class PaginaController {
 
     @Autowired
     private ParadaRepository paradaR;
-
-    @Autowired
-    private OnibusRepository onibusR;
 
     @Autowired
     private LinhaRepository linhaR;

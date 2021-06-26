@@ -10,7 +10,6 @@ public class HistoricoFORM {
 
     @NotNull
     private Double valor;
-    @NotNull
     private Usuario usuario;
 
     public Double getValor() {
