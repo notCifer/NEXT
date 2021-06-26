@@ -3,15 +3,22 @@ package com.app.models.form;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import javax.validation.constraints.NotBlank;
+
 import com.app.models.Pessoa;
 import com.app.models.Usuario;
 import com.app.repositories.PessoaRepository;
 
 public class PessoaFORM {
 
+    @NotBlank
     private String nome;
+    @NotBlank
     private String sobrenome;
+    @NotBlank
     private String cpf;
+    @NotBlank
     private String dtNasc;
 
     public String getNome() {

@@ -1,4 +1,4 @@
-package com.app.configs.services;
+package com.app.services;
 
 import java.util.Optional;
 import com.app.models.Usuario;

@@ -57,19 +57,38 @@
     </div>
     <div class="content">
         <section id="CriarRota">
-            <div class="card">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-            </div>
+            <form id="linhaform" class="formlinha">
+                <ul class="dropdown" id="d">
+                    <input type="text" value="Selecione um Linha" readonly="" id="v">
+                    <i>+</i>
+                    <ul class="options" id="o">
+                        <li th:each="linha : ${linhas}" th:text="${linha.nome}" th:name="${linha.nome}"></li>
+                    </ul>
+                </ul>
+                <ul class="dropdown" id="d1">
+                    <input type="text" value="Inicio" readonly="" id="v1">
+                    <i>+</i>
+                    <ul class="options" id="o1">
+                        <li th:each="parada : ${paradas}" th:text="${parada.nome}" th:name="${parada.nome}"></li>
+                    </ul>
+                </ul>
+                <ul class="dropdown" id="d2">
+                    <input type="text" value="Final" readonly="" id="v2">
+                    <i>+</i>
+                    <ul class="options" id="o2">
+                        <li th:each="parada : ${paradas}" th:text="${parada.nome}" th:name="${parada.nome}"></li>
+                    </ul>
+                </ul>
+            </form>
         </section>
         <section id="Saldo">
             <div class="box-top">
                 <h3>SALTO TOTAL</h3>
-                <h1>[[${total}]]</h1>
+                <h1 class="saldototal">[[${total}]]</h1>
                 <table class="tabela">
                     <thead>
                         <tr>
-                            <th>Data</th>
+                            <th>Data / Hora</th>
                             <th>Valor</th>
                         </tr>
                     </thead>
@@ -83,9 +102,9 @@
                 </table>
             </div>
             <div class="butons">
-                <form class="saldo" name="formsaldo" action="#" th:action="@{/Saldo}" th:object="${historicoform}" onsubmit="return isEmpty()" method="POST">
+                <form class="saldo" name="formsaldo" action="#" th:action="@{/Saldo}" th:object="${historicoform} " onsubmit="return isEmpty()" method="POST">
                     <div>
-                        <input type="number" step="0.01" class="insertsaldo" name="valor" id="valor" th:field="*{valor}" placeholder="R$          ">
+                        <input type="number" step="0.01" class="insertsaldo" name="valor" id="valor" th:field="*{valor}">
                     </div>
                     <div class="btns">
                         <button type="button" class="btncancelar" id="btn2">Cancelar</button>
@@ -97,9 +116,7 @@
             </div>
         </section>
         <section id="MinhasRotas">
-            <div class="card ">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+            <div class="card">
             </div>
         </section>
         <section id="Sobre">
@@ -116,7 +133,7 @@
                 <h1>Sobrenome</h1>
                 <input type="text" class="insert" th:field="*{sobrenome}">
                 <h1>CPF</h1>
-                <input type="text" class="insertdate" placeholder=" . . - " th:field="*{cpf}">
+                <input type="text" class="insertdate" onkeypress="$(this).mask( '000.000.000-00');" th:field="*{cpf}">
                 <h1>Data de Nascimento</h1>
                 <input type="date" class="insertdate" th:field="*{dtNasc}">
                 <button type="submit" class="btn-perfil">Salvar</button>
@@ -124,21 +141,21 @@
         </section>
     </div>
 
-    <script type="text/javascript ">
+    <script type="text/javascript">
         $(document).ready(function() {
             $('.nav_btn').click(function() {
                 $('.mobile_nav_items').toggleClass('active');
             });
         });
     </script>
-    <script type="text/javascript ">
+    <script type="text/javascript">
         $(document).ready(function() {
             $('.btnhistorico').click(function() {
                 $('.tabela').toggleClass('mostrar');
             });
         });
     </script>
-    <script type="text/javascript ">
+    <script type="text/javascript">
         $(document).ready(function() {
             $('.btnsaldo').click(function() {
                 $('.saldo').toggleClass('mostrar');
@@ -150,8 +167,64 @@
             });
         });
     </script>
-    <script src="./js/fuction.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+        var dropdown = document.getElementById('d');
+        var options = document.getElementById('o');
+        var input = document.getElementById('v');
+
+        dropdown.addEventListener('click', function() {
+            this.classList.toggle('show');
+        })
+        options.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input.value = value;
+        })
+
+        function getValue() {
+            return value;
+        }
+    </script>
+    <script type="text/javascript">
+        var dropdown1 = document.getElementById('d1');
+        var options1 = document.getElementById('o1');
+        var input1 = document.getElementById('v1');
+
+        dropdown1.addEventListener('click', function() {
+            this.classList.toggle('show');
+        })
+        options1.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input1.value = value;
+        })
+
+        function getValue() {
+            return value;
+        }
+    </script>
+    <script type="text/javascript">
+        var dropdown2 = document.getElementById('d2');
+        var options2 = document.getElementById('o2');
+        var input2 = document.getElementById('v2');
+
+        dropdown2.addEventListener('click', function() {
+            this.classList.toggle('show');
+        })
+        options2.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input2.value = value;
+        })
+
+        function getValue() {
+            return value;
+        }
+    </script>
+
+    <script src="./js/fuction.js "></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js "></script>
 
 </body>
 

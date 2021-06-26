@@ -1,6 +1,6 @@
 package com.app.configs;
 
-import com.app.configs.services.AutenticacaoService;
+import com.app.services.AutenticacaoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
