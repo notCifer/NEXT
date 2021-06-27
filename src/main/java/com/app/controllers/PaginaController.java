@@ -17,10 +17,12 @@ import com.app.models.Usuario;
 import com.app.models.dto.HistoricoDTO;
 import com.app.models.form.HistoricoFORM;
 import com.app.models.form.PessoaFORM;
+import com.app.models.form.RotaFORM;
 import com.app.repositories.HistoricoRepository;
 import com.app.repositories.LinhaRepository;
 import com.app.repositories.ParadaRepository;
 import com.app.repositories.PessoaRepository;
+import com.app.repositories.RotaRepository;
 import com.app.repositories.UsuarioRepository;
 import com.app.services.ServicesTools;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,9 @@ public class PaginaController {
     @Autowired
     private LinhaRepository linhaR;
 
+    @Autowired
+    private RotaRepository rotaR;
+
     @RequestMapping(value = "/nextpoint", method = RequestMethod.GET)
     public ModelAndView home(Model model) throws IOException {
         HistoricoDTO DTO = new HistoricoDTO();
@@ -62,6 +67,7 @@ public class PaginaController {
         loadHistorico();
         loadLinhas();
         loadParadas();
+        loadRota();
 
         Usuario logado = usuarioS.getLogado(usuarioR);
         if (logado != null) {
@@ -111,6 +117,18 @@ public class PaginaController {
         return "redirect:/nextpoint#Perfil";
     }
 
+
+    @RequestMapping(value = "/Rota", method = RequestMethod.POST)
+    public String addRota(@ModelAttribute RotaFORM FORM, Errors errors) throws InterruptedException{
+        Usuario logado = usuarioS.getLogado(usuarioR);
+        if (errors.hasErrors()) {
+            return "redirect:/nextpoint?rotaerror#CriarRota";
+        }
+        FORM.toFORM(rotaR, logado);
+        TimeUnit.SECONDS.sleep(2);
+        return "redirect:/nextpoint#CriarRota";
+    }
+
     // ------------------ MODEL ATRIBUTTES ------------------
 
     @ModelAttribute("historicoform")
@@ -123,6 +141,11 @@ public class PaginaController {
         return new PessoaFORM();
     }
 
+    @ModelAttribute("rotaform")
+    public RotaFORM loadRota() {
+        return new RotaFORM();
+    }
+
     @ModelAttribute("linhas")
     public List<Linha> loadLinhas() {
         List<Linha> linhas = linhaR.findAll();
@@ -130,7 +153,7 @@ public class PaginaController {
     }
 
     @ModelAttribute("paradas")
-    public List<Parada> loadParadas(){
+    public List<Parada> loadParadas() {
         List<Parada> paradas = paradaR.findAll();
         return paradas;
     }
