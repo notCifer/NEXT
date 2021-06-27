@@ -1,0 +1,715 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="pt-br" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Point:</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <input type="checkbox" id="check">
+    <header>
+        <label for="check">
+            <i class="fas fa-bars" id="sidebar_btn"></i>
+        </label>
+        <div class="left_area">
+            <img src="./css/img/navigation.png">
+            <h1>NextPoint</h1>
+        </div>
+        <div class="right_area">
+            <a class="logout_btn" onclick="logout();">Sair</a>
+        </div>
+    </header>
+    <div class="sidebar">
+        <div class="profile_info">
+            <img th:src="'data:image/jpeg;base64,' + ${imagem}" class="profile_image" alt="">
+            <h4>[[${#request.remoteUser}]]</h4>
+        </div>
+        <a href="#CriarRota"><i class="fas fa-desktop"></i><span>Criar rota</span></a>
+        <a href="#Saldo"><i class="fas fa-table"></i><span>Saldo</span></a>
+        <a href="#MinhasRotas"><i class="fas fa-th"></i><span>Minhas rotas</span></a>
+        <a href="#Sobre"><i class="fas fa-info-circle"></i><span>Sobre</span></a>
+        <a href="#Perfil"><i class="fas fa-sliders-h"></i><span>Perfil</span></a>
+    </div>
+    <div class="mobile_nav">
+        <div class="block">
+            <div class="nav_bar">
+                <img th:src="'data:image/jpeg;base64,' + ${imagem}" class="mobile_profile_image" alt="">
+                <i class="fa fa-bars nav_btn"></i>
+            </div>
+            <div class="mobile_nav_items">
+                <a href="#CriarRota"><i class="fas fa-desktop"></i><span>Criar rota</span></a>
+                <a href="#Saldo"><i class="fas fa-table"></i><span>Saldo</span></a>
+                <a href="#MinhasRotas"><i class="fas fa-th"></i><span>Minhas rotas</span></a>
+                <a href="#Sobre"><i class="fas fa-info-circle"></i><span>Sobre</span></a>
+                <a href="#Perfil"><i class="fas fa-sliders-h"></i><span>Perfil</span></a>
+            </div>
+        </div>
+
+    </div>
+    <div class="content">
+        <section id="CriarRota">
+            <div id="stepProgressBar">
+                <div class="step">
+                    <p class="step-text">Terminal Sitio Cercado</p>
+                    <div class="bullet">1</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Chapinhal</p>
+                    <div class="bullet">2</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Terminal Pinheirinho</p>
+                    <div class="bullet">3</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Terminal Capão Raso</p>
+                    <div class="bullet ">4</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Agua Verde</p>
+                    <div class="bullet ">5</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Westephalen</p>
+                    <div class="bullet ">6</div>
+                </div>
+                <div class="step">
+                    <p class="step-text">Tubo Guadalupe</p>
+                    <div class="bullet ">7</div>
+                </div>
+            </div>
+
+            <form id="linhaform" class="formlinha" action="#" th:action="@{/Rota}" th:object="${rotaform}" method="POST">
+                <h3 class="letra">Simule sua rota!</h3>
+                <ul class="dropdown" id="d">
+                    <h2>Selecione a lina</h2>
+                    <input type="text" th:field="*{linha}" readonly="" id="v">
+                    <i>♦️</i>
+                    <ul class="options" id="o">
+                        <li th:each="linha : ${linhas}" th:text="${linha.nome}" th:name="${linha.nome}"></li>
+                    </ul>
+                </ul>
+                <ul class="dropdown" id="d1">
+                    <h2>Selecione o ponto Inicial</h2>
+                    <input type="text" value="Inicio" th:field="*{paradaInicial}" readonly="" id="v1">
+                    <i>♦️</i>
+                    <ul class="options" id="o1">
+                        <li th:each="parada : ${paradas}" th:text="${parada.nome}" th:name="${parada.nome}"></li>
+                    </ul>
+                </ul>
+                <ul class="dropdown" id="d2">
+                    <h2>Selecione o ponto Final</h2>
+                    <input type="text" value="Final" th:field="*{paradaFinal}" readonly="" id="v2">
+                    <i>♦️</i>
+                    <ul class="options" id="o2">
+                        <li th:each="parada : ${paradas}" th:text="${parada.nome}" th:name="${parada.nome}"></li>
+                    </ul>
+                </ul>
+                <button type="submit" id="btnID" class="btn-Salva" disabled onclick="Ok();">Salvar</button>
+            </form>
+
+        </section>
+        <section id="Saldo">
+            <div class="box-top">
+                <h3>SALTO TOTAL</h3>
+                <h1 class="saldototal">[[${total}]]</h1>
+                <table class="tabela">
+                    <thead>
+                        <tr>
+                            <th>Data / Hora</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="historico : ${historicos}">
+                            <td th:text="${historico.hoje}"></td>
+                            <td th:text="${historico.valor}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="butons">
+                <form class="saldo" name="formsaldo" action="#" th:action="@{/Saldo}" th:object="${historicoform}" onsubmit="return isEmpty()" method="POST">
+                    <div>
+                        <input type="number" step="0.01" class="insertsaldo" name="valor" id="valor" th:field="*{valor}">
+                    </div>
+                    <div class="btns">
+                        <button type="button" class="btncancelar" id="btn2">Cancelar</button>
+                        <button type="submit" id="btn2">Adicionar</button>
+                    </div>
+                </form>
+                <button type="button" class="btnsaldo" id="btn">Adicionar Saldo</button>
+                <button type="button" class="btnhistorico" id="btn">Ver Historico</button>
+            </div>
+        </section>
+        <section id="MinhasRotas">
+            <table class="tabelarota">
+                <thead>
+                    <tr>
+                        <th>Linha</th>
+                        <th>Ponto Inicial</th>
+                        <th>Ponto Final</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="rota : ${rotas}">
+                        <td th:text="${rota.linha}"></td>
+                        <td th:text="${rota.paradaInicial}"></td>
+                        <td th:text="${rota.paradaFinal}"></td>
+                        <td>
+                            <a class="delete" th:href="@{/Rota/Delete/{id}(id=${rota.id})}" onclick="deletar();">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="Sobre">
+            <div class="paragrafo">
+                <h1>Sobre a
+                    <font>NextPoint</font>
+                </h1>
+                <br><br>
+                <p>Observando como o mundo avança mais tecnologicamente e o Brasil sendo um país tão grande e rico, mas ainda muito atrasado referente a tecnologia ultilizada no sistema do transporte público. Entre essa e outras que a
+                    <font1>NextPoint</font1> nasceu. <br><br> A
+                    <font1>NextPoint</font1> é um sistema inteligente que funciona focado para o Transporte Público. Com apenas um celular, você consegue carregar o seu saldo através de seu cartão, acompanhar sua rota, ver as próximas paradas e até mesmo gravar
+                    suas principais rotas do dia a dia. Isso facilitaria muito a vida, por exemplo para não ter que ficar enfrentando filas para carregar seu cartão ou até mesmo para não correr o risco de perdê-lo.<br><br> Além do mais, você já pensou
+                    em pagar apenas o valor de pontos percorridos ao invés pagar uma tarifa fixa?<br> Pois é assim, que a
+                    <font1>NextPoint</font1> funciona! Pesando exclusivamente na facilidade dos usuários.<br> <br>Por essas e outras vantagens!<br><br>
+
+                </p>
+                <h2>Vem com a gente!</h2>
+            </div>
+
+        </section>
+        <section id="Perfil" class="divi">
+            <form class="perfil" action="#" th:action="@{/Perfil}" th:object="${pessoaform}" method="POST" enctype="multipart/form-data">
+
+                <div class="wrapper">
+                    <img th:src="'data:image/jpeg;base64,' + ${imagem}" alt="" class="imageminput">
+                    <input type="file" class="myfile" accept="image/png, image/jpeg" name="myfile">
+                </div>
+                <h1>Nome</h1>
+                <input type="text" class="insert" th:field="*{nome}">
+                <h1>Sobrenome</h1>
+                <input type="text" class="insertsobre" th:field="*{sobrenome}">
+                <h1>CPF</h1>
+                <input type="text" class="insertcpf" onkeypress="$(this).mask( '000.000.000-00');" th:field="*{cpf}">
+                <h1>Data de Nascimento</h1>
+                <input type="date" class="insertdate" th:field="*{dtNasc}">
+                <button type="submit" class="btn-perfil">Salvar</button>
+            </form>
+        </section>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.nav_btn').click(function() {
+                $('.mobile_nav_items').toggleClass('active');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.btnhistorico').click(function() {
+                $('.tabela').toggleClass('mostrar');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.btnsaldo').click(function() {
+                $('.saldo').toggleClass('mostrar');
+            });
+        });
+        $(document).ready(function() {
+            $('.btncancelar').click(function() {
+                $('.saldo').toggleClass('mostrar');
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        var dropdown = document.getElementById('d');
+        var options = document.getElementById('o');
+        var input = document.getElementById('v');
+        var progress = document.getElementById('stepProgressBar');
+        var dropdown1 = document.getElementById('d1');
+        var dropdown2 = document.getElementById('d2');
+        var options1 = document.getElementById('o1');
+
+        dropdown.addEventListener('click', function() {
+            this.classList.toggle('show');
+        })
+        options.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input.value = value;
+            progress.classList.toggle('show');
+            dropdown1.classList.toggle('mostrar');
+        })
+
+        options1.addEventListener('click', function() {
+            dropdown2.classList.add('mostrar');
+        })
+
+
+
+        function getValue() {
+            return value;
+        }
+    </script>
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        var dropdown1 = document.getElementById('d1');
+        var options1 = document.getElementById('o1');
+        var input1 = document.getElementById('v1');
+        var dropdown2 = document.getElementById('d2');
+        var options2 = document.getElementById('o2');
+        var input2 = document.getElementById('v2');
+
+        dropdown1.addEventListener('click', function() {
+            this.classList.toggle('show');
+        })
+        options1.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value2 = listItem.attributes.name.value;
+            input1.value = value2;
+        })
+
+        dropdown2.addEventListener('click', function() {
+            this.classList.toggle('show');
+        })
+        options2.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input2.value = value;
+        })
+    </script>
+    <script type="text/javascript">
+        const content = document.getElementById('content');
+        const bullets = [...document.querySelectorAll('.bullet')];
+
+        var dropdown1 = document.getElementById('d1');
+        var options1 = document.getElementById('o1');
+        var input1 = document.getElementById('v1');
+        var dropdown2 = document.getElementById('d2');
+        var options2 = document.getElementById('o2');
+        var input2 = document.getElementById('v2');
+
+        options1.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value2 = listItem.attributes.name.value;
+            input1.value = value2;
+            if (value2 == "Terminal Sitio Cercado") {
+                currentStep = 1;
+                for (let x = 1; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
+                for (let currentStep = 2; currentStep < 7; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+
+            } else if (value2 == "Chapinhal") {
+                currentStep = 2;
+                for (let x = 2; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
+                for (let currentStep = 3; currentStep < 7; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+                for (let currentStep = 1; currentStep < 2; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+            } else if (value2 == "Terminal Pinheirinho") {
+                currentStep = 3;
+                for (let x = 3; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
+                for (let currentStep = 4; currentStep < 7; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+                for (let currentStep = 1; currentStep < 3; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+            } else if (value2 == "Terminal Capão Raso") {
+                currentStep = 4;
+                for (let x = 4; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
+                for (let currentStep = 5; currentStep < 7; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+                for (let currentStep = 1; currentStep < 4; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+            } else if (value2 == "Agua Verde") {
+                currentStep = 5;
+                for (let x = 5; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
+                for (let currentStep = 6; currentStep < 7; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+                for (let currentStep = 1; currentStep < 5; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+            } else if (value2 == "Westephalen") {
+                currentStep = 6;
+                for (let x = 6; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
+                for (let currentStep = 7; currentStep < 7; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+                for (let currentStep = 1; currentStep < 6; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+            } else {
+                swal({
+                    title: "Guadalupe",
+                    text: "Não pode ser o Ponto Inicial",
+                    icon: "error",
+                    buttons: false,
+                    timer: 2000,
+                }).then((will) => {
+                    if (will) {
+                        $(".onoffswitch-checkbox").prop('checked', false);
+                    } else {
+                        $("#all_petugas").click();
+                    }
+                });
+            }
+        })
+
+        options2.addEventListener('click', function(event) {
+            const listItem = event.target;
+            const value = listItem.attributes.name.value;
+            input2.value = value;
+
+            if (value == "Terminal Sitio Cercado") {
+                swal({
+                    title: "Terminal Sitio Cercado",
+                    text: "Não pode ser o ponto Final",
+                    icon: "error",
+                    buttons: false,
+                    timer: 2000,
+                }).then((will) => {
+                    if (will) {
+                        $(".onoffswitch-checkbox").prop('checked', false);
+                    } else {
+                        $("#all_petugas").click();
+                    }
+                });
+                document.getElementById('btnID').disabled = true;
+                for (let index = 1; index < 8; index++) {
+                    if (bullets[index - 1].classList.contains('completedBack')) {
+                        bullets[index - 1].classList.remove('completedBack');
+                    }
+                }
+            } else if (value == "Chapinhal") {
+                currentStep = 2;
+                for (let x = 2; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 2;
+                        bullets[currentStep - 1].classList.add('completedBack');
+                        document.getElementById('btnID').disabled = false;
+                        for (let currentStep = 3; currentStep < 7; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+            } else if (value == "Terminal Pinheirinho") {
+                currentStep = 3;
+                for (let x = 3; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 3;
+
+                        bullets[currentStep - 1].classList.add('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 4; currentStep < 7; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 2; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
+            } else if (value == "Terminal Capão Raso") {
+                currentStep = 4;
+                for (let x = 4; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 4;
+                        bullets[currentStep - 1].classList.toggle('completedBack');
+                        document.getElementById('btnID').disabled = false;
+                        for (let currentStep = 5; currentStep < 8; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 3; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
+
+            } else if (value == "Agua Verde") {
+                currentStep = 5;
+                for (let x = 5; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 5;
+                        console.log("ENTROU");
+                        currentStep = 5;
+                        bullets[currentStep - 1].classList.add('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 6; currentStep < 8; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 4; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
+            } else if (value == "Westephalen") {
+                currentStep = 6;
+                for (let x = 6; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 6;
+
+                        bullets[currentStep - 1].classList.toggle('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 7; currentStep < 8; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 5; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
+            } else if (value == "Guadalupe") {
+                currentStep = 7;
+                for (let x = 7; x < 8; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 7;
+
+                        bullets[currentStep - 1].classList.toggle('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 6; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        function Ok() {
+            swal({
+                text: "Rota criada!",
+                icon: "success",
+                button: false
+            });
+        }
+    </script>
+
+    <script src="./js/fuction.js "></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js "></script>
+
+</body>
+
+</html>

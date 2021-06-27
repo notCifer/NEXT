@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="https://www.thymelead.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+
+    <title>NextPoint: Login</title>
+</head>
+
+<body>
+    <div class="Top">
+        <div class="menu">
+            <ul>
+                <li class="logo">
+                    <img src="./css/img/navigation.png">
+                    <h1 class="logo-nome">Next Point</h1>
+                </li>
+            </ul>
+            <ul>
+                <li><a class="letter" href="/"><b>HOME</b></a></li>
+                <li><a class="letter" href="/#SERVICES">PLANOS</a></li>
+                <li><a class="letter" href="/#SOBRE">SOBRE</a></li>
+                <li><a class="letter" href="/#CONTATO">CONTATO</a></li>
+            </ul>
+        </div>
+
+        <div class="body">
+            <div class="Form-box">
+                <div class="social-icons">
+                    <img src="./css/img/1.png">
+                    <img src="./css/img/2.png">
+                    <img src="./css/img/3.png">
+                </div>
+                <div th:if="${param.sucess}">
+                    <div><a class="sucess" href="" th:href="@{/login}">Conta Criada!</a> </div>
+                </div>
+                <div class="loginerro" th:if="${param.email}">
+                    Email ja ultilizado!
+                </div>
+                <form th:action="@{/register}" method="POST" th:object="${usuario}" id="Cadastro" class="input-group">
+                    <input id="email" th:field="*{email}" type="email" name="Email" class="Insert" placeholder="Email" required>
+                    <input id="SENHA1" th:field="*{senha}" onkeyup="active()" type="password" name="Senha" class="Insert" placeholder="Senha" minlength="6" required>
+                    <input id="SENHA2" onkeyup="active_2()" type="password" name="Confirme_Senha" class="Insert" placeholder="Confirme a Senha" min="6" required disabled>
+                    <div class="mostrar">Mostrar</div>
+                    <div class="erro"></div>
+                    <label class="form-checkbox">
+                        <input type="checkbox" class="check-box" required><span>Eu aceito os termos e condições</span>
+                        <span class="checkmark"></span>
+                    </label>
+                    <button type="submit" class="btn-cadastro" onclick="botao()">Registrar</button>
+                    <span class="span">Ja tem uma conta? <a class="loginpage" th:href="@{/login}">Logar</a> </span>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/fuction.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+
+</html>

@@ -10,15 +10,4 @@ public class NextpointApplication {
 		SpringApplication.run(NextpointApplication.class, args);
 	}
 
-	// @Bean
-	// public DataSource DT() {
-	// DriverManagerDataSource DS = new DriverManagerDataSource();
-	// DS.setDriverClassName("com.mysql.jdbc.Driver");
-	// DS.setUrl("jdbc:mysql://localhost:3307/NEXTPOINT");
-	// DS.setUsername("root");
-	// DS.setPassword("root");
-	// return DS;
-
-	// }
-
 }
