@@ -15,6 +15,7 @@ import com.app.models.Historico;
 import com.app.models.Linha;
 import com.app.models.Parada;
 import com.app.models.Pessoa;
+import com.app.models.Rota;
 import com.app.models.Usuario;
 import com.app.models.dto.HistoricoDTO;
 import com.app.models.form.HistoricoFORM;
@@ -31,7 +32,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -70,7 +73,6 @@ public class PaginaController {
         loadLinhas();
         loadParadas();
         loadRota();
-
         Usuario logado = usuarioS.getLogado(usuarioR);
         if (logado != null) {
             Pessoa pessoa = pessoaR.findByConta(logado);
@@ -80,6 +82,9 @@ public class PaginaController {
                 model.addAttribute("imagem", imageBase64);
                 model.addAttribute("pessoaform", pessoa);
             }
+
+            List<Rota> rotas = rotaR.findAllRota(logado.getId());
+            model.addAttribute("rotas", rotas);
             List<Historico> list = historicoR.findAllList(logado.getId());
             Double total = 0.0;
             for (Historico historico : list) {
@@ -91,6 +96,10 @@ public class PaginaController {
             List<HistoricoDTO> listDTO = DTO.EntidDTO(list);
             ModelAndView mav = new ModelAndView("page");
             mav.addObject("historicos", listDTO);
+
+
+
+
             return mav;
         }
         return null;
@@ -161,6 +170,13 @@ public class PaginaController {
         return "redirect:/nextpoint#CriarRota";
     }
 
+
+    @GetMapping("/Rota/Delete/{id}")
+	public String deleteEmployee(@PathVariable (value = "id") long id) throws InterruptedException {
+        rotaR.deleteById(id);
+		return "redirect:/nextpoint#MinhasRotas";
+	}
+	
     // ------------------ MODEL ATRIBUTTES ------------------
 
     @ModelAttribute("historicoform")

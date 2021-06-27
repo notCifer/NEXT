@@ -133,7 +133,6 @@
                         <tr th:each="historico : ${historicos}">
                             <td th:text="${historico.hoje}"></td>
                             <td th:text="${historico.valor}"></td>
-
                         </tr>
                     </tbody>
                 </table>
@@ -153,8 +152,26 @@
             </div>
         </section>
         <section id="MinhasRotas">
-            <div class="card">
-            </div>
+            <table class="tabelarota">
+                <thead>
+                    <tr>
+                        <th>Linha</th>
+                        <th>Ponto Inicial</th>
+                        <th>Ponto Final</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="rota : ${rotas}">
+                        <td th:text="${rota.linha}"></td>
+                        <td th:text="${rota.paradaInicial}"></td>
+                        <td th:text="${rota.paradaFinal}"></td>
+                        <td>
+                            <a class="delete" th:href="@{/Rota/Delete/{id}(id=${rota.id})}" onclick="deletar();">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
         <section id="Sobre">
         </section>

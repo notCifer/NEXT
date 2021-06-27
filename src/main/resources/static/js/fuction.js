@@ -97,3 +97,21 @@ function logout() {
             return false;
         });
 }
+
+
+function deletar() {
+    swal({
+            title: "Tem certeza?",
+            buttons: ["Voltar", "Deletar"],
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Rota Deletada", {
+                    icon: "success",
+                    button: false
+                });
+            }
+            return false;
+        });
+}
