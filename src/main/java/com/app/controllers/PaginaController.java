@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 import java.util.Locale;
@@ -108,18 +110,48 @@ public class PaginaController {
     @RequestMapping(value = "/Perfil", method = RequestMethod.POST)
     public String AddPessoa(@ModelAttribute PessoaFORM FORM, @RequestParam("myfile") MultipartFile myfile,
             Errors errors) throws IOException {
-        byte[] imagebyte = myfile.getBytes();
+
+        File fi = new File(
+                "C:/Users/Allan/Desktop/WORKSPACE/NextPoint/src/main/resources/static/css/img/userimage.gif");
+        byte[] imagebyte = Files.readAllBytes(fi.toPath());
+
         Usuario logado = usuarioS.getLogado(usuarioR);
-        if (errors.hasErrors()) {
-            return "redirect:/nextpoint?pessoaerror#Perfil";
+        Pessoa pessoa = pessoaR.findByConta(logado);
+        if (pessoa != null) {
+            pessoa.setNome(FORM.getNome());
+            pessoa.setSobrenome(FORM.getSobrenome());
+            pessoa.setCpf(FORM.getCpf());
+            if (!myfile.isEmpty()) {
+                pessoa.setImage(myfile.getBytes());
+            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate convertDate = LocalDate.parse(FORM.getDtNasc(), formatter);
+            pessoa.setDtNasc(convertDate);
+            pessoaR.save(pessoa);
+            return "redirect:/nextpoint#Perfil";
+        } else {
+            if (myfile.isEmpty()) {
+                if (errors.hasErrors()) {
+                    return "redirect:/nextpoint?pessoaerror#Perfil";
+                }
+
+                FORM.toFORM(pessoaR, logado, imagebyte);
+                return "redirect:/nextpoint#Perfil";
+            } else {
+                byte[] image = myfile.getBytes();
+                if (errors.hasErrors()) {
+                    return "redirect:/nextpoint?pessoaerror#Perfil";
+                }
+                FORM.toFORM(pessoaR, logado, image);
+                return "redirect:/nextpoint#Perfil";
+            }
+
         }
-        FORM.toFORM(pessoaR, logado, imagebyte);
-        return "redirect:/nextpoint#Perfil";
+
     }
 
-
     @RequestMapping(value = "/Rota", method = RequestMethod.POST)
-    public String addRota(@ModelAttribute RotaFORM FORM, Errors errors) throws InterruptedException{
+    public String addRota(@ModelAttribute RotaFORM FORM, Errors errors) throws InterruptedException {
         Usuario logado = usuarioS.getLogado(usuarioR);
         if (errors.hasErrors()) {
             return "redirect:/nextpoint?rotaerror#CriarRota";

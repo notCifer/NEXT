@@ -477,7 +477,6 @@ button:disabled:hover {
     color: black;
     text-align: center;
     font-size: 20px;
-    background: #0000006b;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.774);
@@ -754,7 +753,27 @@ tbody tr:nth-child(even) {
 
 .insert {
     font-family: 'Open Sans', sans-serif;
-    width: 300px;
+    width: 30%;
+    text-align: center;
+    font-size: 20px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 5px;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid orange;
+    outline: none;
+    border-radius: 30px;
+    background: white;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.insertsobre {
+    font-family: 'Open Sans', sans-serif;
+    width: 80%;
     text-align: center;
     font-size: 20px;
     padding-top: 2px;
