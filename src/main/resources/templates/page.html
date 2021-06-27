@@ -87,29 +87,34 @@
                     <div class="bullet ">7</div>
                 </div>
             </div>
+
             <form id="linhaform" class="formlinha" action="#" th:action="@{/Rota}" th:object="${rotaform}" method="POST">
+                <h3 class="letra">Simule sua rota!</h3>
                 <ul class="dropdown" id="d">
-                    <input type="text" value="Selecione um Linha" th:field="*{linha}" readonly="" id="v">
-                    <i>+</i>
+                    <h2>Selecione a lina</h2>
+                    <input type="text" th:field="*{linha}" readonly="" id="v">
+                    <i>♦️</i>
                     <ul class="options" id="o">
                         <li th:each="linha : ${linhas}" th:text="${linha.nome}" th:name="${linha.nome}"></li>
                     </ul>
                 </ul>
                 <ul class="dropdown" id="d1">
+                    <h2>Selecione o ponto Inicial</h2>
                     <input type="text" value="Inicio" th:field="*{paradaInicial}" readonly="" id="v1">
-                    <i>+</i>
+                    <i>♦️</i>
                     <ul class="options" id="o1">
                         <li th:each="parada : ${paradas}" th:text="${parada.nome}" th:name="${parada.nome}"></li>
                     </ul>
                 </ul>
                 <ul class="dropdown" id="d2">
+                    <h2>Selecione o ponto Final</h2>
                     <input type="text" value="Final" th:field="*{paradaFinal}" readonly="" id="v2">
-                    <i>+</i>
+                    <i>♦️</i>
                     <ul class="options" id="o2">
                         <li th:each="parada : ${paradas}" th:text="${parada.nome}" th:name="${parada.nome}"></li>
                     </ul>
                 </ul>
-                <button type="submit" class="btn-Salva">Salvar</button>
+                <button type="submit" id="btnID" class="btn-Salva" disabled onclick="Ok();">Salvar</button>
             </form>
 
         </section>
@@ -165,7 +170,7 @@
                 <h1>Sobrenome</h1>
                 <input type="text" class="insert" th:field="*{sobrenome}">
                 <h1>CPF</h1>
-                <input type="text" class="insertdate" onkeypress="$(this).mask( '000.000.000-00');" th:field="*{cpf}">
+                <input type="text" class="insertcpf" onkeypress="$(this).mask( '000.000.000-00');" th:field="*{cpf}">
                 <h1>Data de Nascimento</h1>
                 <input type="date" class="insertdate" th:field="*{dtNasc}">
                 <button type="submit" class="btn-perfil">Salvar</button>
@@ -258,9 +263,6 @@
         })
     </script>
     <script type="text/javascript">
-        const previousBtn = document.getElementById('previousBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const finishBtn = document.getElementById('finishBtn');
         const content = document.getElementById('content');
         const bullets = [...document.querySelectorAll('.bullet')];
 
@@ -277,77 +279,118 @@
             input1.value = value2;
             if (value2 == "Terminal Sitio Cercado") {
                 currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completedBack');
-                bullets[currentStep - 1].classList.toggle('completed');
+                for (let x = 1; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
                 for (let currentStep = 2; currentStep < 7; currentStep++) {
                     bullets[currentStep - 1].classList.remove('completed');
                 }
 
             } else if (value2 == "Chapinhal") {
                 currentStep = 2;
-                bullets[currentStep - 1].classList.remove('completedBack');
-                bullets[currentStep - 1].classList.toggle('completed');
+                for (let x = 2; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
                 for (let currentStep = 3; currentStep < 7; currentStep++) {
                     bullets[currentStep - 1].classList.remove('completed');
                 }
-                currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completed');
+                for (let currentStep = 1; currentStep < 2; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
             } else if (value2 == "Terminal Pinheirinho") {
                 currentStep = 3;
-                bullets[currentStep - 1].classList.remove('completedBack');
-                bullets[currentStep - 1].classList.toggle('completed');
+                for (let x = 3; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
                 for (let currentStep = 4; currentStep < 7; currentStep++) {
                     bullets[currentStep - 1].classList.remove('completed');
                 }
-                currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 2;
-                bullets[currentStep - 1].classList.remove('completed');
+                for (let currentStep = 1; currentStep < 3; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
             } else if (value2 == "Terminal Capão Raso") {
                 currentStep = 4;
-                bullets[currentStep - 1].classList.remove('completedBack');
-                bullets[currentStep - 1].classList.toggle('completed');
+                for (let x = 4; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
                 for (let currentStep = 5; currentStep < 7; currentStep++) {
                     bullets[currentStep - 1].classList.remove('completed');
                 }
-                currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 2;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 3;
-                bullets[currentStep - 1].classList.remove('completed');
+                for (let currentStep = 1; currentStep < 4; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
             } else if (value2 == "Agua Verde") {
                 currentStep = 5;
-                bullets[currentStep - 1].classList.remove('completedBack');
-                bullets[currentStep - 1].classList.toggle('completed');
+                for (let x = 5; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
                 for (let currentStep = 6; currentStep < 7; currentStep++) {
                     bullets[currentStep - 1].classList.remove('completed');
                 }
-                currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 2;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 3;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 4;
-                bullets[currentStep - 1].classList.remove('completed');
+                for (let currentStep = 1; currentStep < 5; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
             } else if (value2 == "Westephalen") {
                 currentStep = 6;
-                bullets[currentStep - 1].classList.remove('completedBack');
-                bullets[currentStep - 1].classList.toggle('completed');
+                for (let x = 6; x > 0; x--) {
+                    bullets[x - 1].classList.remove('completedBack');
+                }
+                if (bullets[currentStep - 1].classList.contains('completedBack')) {
+                    bullets[currentStep - 1].classList.remove('completedBack');
+                    bullets[currentStep - 1].classList.toggle('completed');
+                } else {
+                    bullets[currentStep - 1].classList.toggle('completed');
+                }
                 for (let currentStep = 7; currentStep < 7; currentStep++) {
                     bullets[currentStep - 1].classList.remove('completed');
                 }
-                currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 2;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 3;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 4;
-                bullets[currentStep - 1].classList.remove('completed');
-                currentStep = 5;
-                bullets[currentStep - 1].classList.remove('completed');
+                for (let currentStep = 1; currentStep < 6; currentStep++) {
+                    bullets[currentStep - 1].classList.remove('completed');
+                }
+            } else {
+                swal({
+                    title: "Guadalupe",
+                    text: "Não pode ser o Ponto Inicial",
+                    icon: "error",
+                    buttons: false,
+                    timer: 2000,
+                }).then((will) => {
+                    if (will) {
+                        $(".onoffswitch-checkbox").prop('checked', false);
+                    } else {
+                        $("#all_petugas").click();
+                    }
+                });
             }
         })
 
@@ -355,82 +398,276 @@
             const listItem = event.target;
             const value = listItem.attributes.name.value;
             input2.value = value;
+
             if (value == "Terminal Sitio Cercado") {
-                currentStep = 1;
-                bullets[currentStep - 1].classList.toggle('completedBack');
-                for (let currentStep = 2; currentStep < 7; currentStep++) {
-                    bullets[currentStep - 1].classList.remove('completedBack');
+                swal({
+                    title: "Terminal Sitio Cercado",
+                    text: "Não pode ser o ponto Final",
+                    icon: "error",
+                    buttons: false,
+                    timer: 2000,
+                }).then((will) => {
+                    if (will) {
+                        $(".onoffswitch-checkbox").prop('checked', false);
+                    } else {
+                        $("#all_petugas").click();
+                    }
+                });
+                document.getElementById('btnID').disabled = true;
+                for (let index = 1; index < 8; index++) {
+                    if (bullets[index - 1].classList.contains('completedBack')) {
+                        bullets[index - 1].classList.remove('completedBack');
+                    }
                 }
             } else if (value == "Chapinhal") {
                 currentStep = 2;
-                if (bullets[currentStep - 1].classList.contains('completed')) {
-                    swal({
-                        text: "Ponto invalido",
-                        icon: "error",
-                        buttons: false,
-                        timer: 1500,
-                    }).then((will) => {
-                        if (will) {
-                            $(".onoffswitch-checkbox").prop('checked', false);
-                        } else {
-                            $("#all_petugas").click();
+                for (let x = 2; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
                         }
-                    });
-                } else {
-                    bullets[currentStep - 1].classList.toggle('completedBack');
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 2;
+                        bullets[currentStep - 1].classList.add('completedBack');
+                        document.getElementById('btnID').disabled = false;
+                        for (let currentStep = 3; currentStep < 7; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
                 }
-                for (let currentStep = 3; currentStep < 7; currentStep++) {
-                    bullets[currentStep - 1].classList.remove('completedBack');
-                }
-                currentStep = 1;
-                bullets[currentStep - 1].classList.remove('completedBack');
             } else if (value == "Terminal Pinheirinho") {
                 currentStep = 3;
-                bullets[currentStep - 1].classList.remove('completed');
-                bullets[currentStep - 1].classList.toggle('completedBack');
+                for (let x = 3; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 3;
+
+                        bullets[currentStep - 1].classList.add('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 4; currentStep < 7; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 2; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
             } else if (value == "Terminal Capão Raso") {
                 currentStep = 4;
-                bullets[currentStep - 1].classList.remove('completed');
-                bullets[currentStep - 1].classList.toggle('completedBack');
+                for (let x = 4; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 4;
+                        bullets[currentStep - 1].classList.toggle('completedBack');
+                        document.getElementById('btnID').disabled = false;
+                        for (let currentStep = 5; currentStep < 8; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 3; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
+
             } else if (value == "Agua Verde") {
                 currentStep = 5;
-                bullets[currentStep - 1].classList.remove('completed');
-                bullets[currentStep - 1].classList.toggle('completedBack');
+                for (let x = 5; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 5;
+                        console.log("ENTROU");
+                        currentStep = 5;
+                        bullets[currentStep - 1].classList.add('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 6; currentStep < 8; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 4; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
             } else if (value == "Westephalen") {
                 currentStep = 6;
-                bullets[currentStep - 1].classList.remove('completed');
-                bullets[currentStep - 1].classList.toggle('completedBack');
+                for (let x = 6; x < 7; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 6;
+
+                        bullets[currentStep - 1].classList.toggle('completedBack');
+                        document.getElementById('btnID').disabled = false;
+
+                        for (let currentStep = 7; currentStep < 8; currentStep++) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                        for (let currentStep = 5; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
+                    }
+                }
+
             } else if (value == "Guadalupe") {
                 currentStep = 7;
-                bullets[currentStep - 1].classList.remove('completed');
-                bullets[currentStep - 1].classList.toggle('completedBack');
-            }
-        });
+                for (let x = 7; x < 8; x++) {
+                    var valid = true;
+                    if (bullets[x - 1].classList.contains('completed') && valid) {
+                        swal({
+                            title: "Parada Final ",
+                            text: "Invalida!",
+                            icon: "error",
+                            buttons: false,
+                            timer: 1500,
+                        }).then((will) => {
+                            if (will) {
+                                $(".onoffswitch-checkbox").prop('checked', false);
+                            } else {
+                                $("#all_petugas").click();
+                            }
+                        });
+                        for (let index = 1; index < 8; index++) {
+                            if (bullets[index - 1].classList.contains('completedBack')) {
+                                bullets[index - 1].classList.remove('completedBack');
+                            }
+                        }
+                        bullets[currentStep - 1].classList.remove('completedBack');
+                        document.getElementById('btnID').disabled = true;
+                        return valid = false;
+                    } else {
+                        currentStep = 7;
 
+                        bullets[currentStep - 1].classList.toggle('completedBack');
+                        document.getElementById('btnID').disabled = false;
 
-        function remove(value, currentStep) {
-            switch (value) {
-                case "Terminal Sitio Cercado":
-                    for (let index = 0; index < 5; index++) {
-                        bullets[currentStep - index].classList.remove('completed');
+                        for (let currentStep = 6; currentStep > 0; currentStep--) {
+                            bullets[currentStep - 1].classList.remove('completedBack');
+                        }
                     }
-                    break;
-                default:
-                    break;
-            }
-        }
+                }
 
-
-        previousBtn.addEventListener('click', () => {
-            bullets[currentStep - 2].classList.remove('completed');
-            currentStep -= 1;
-            nextBtn.disabled = false;
-            finishBtn.disabled = true;
-            if (currentStep === 1) {
-                previousBtn.disabled = true;
             }
-            content.innerText = `Step Number ${currentStep}`;
         });
+    </script>
+
+    <script type="text/javascript">
+        function Ok() {
+            swal({
+                text: "Rota criada!",
+                icon: "success",
+                button: false
+            });
+        }
     </script>
 
     <script src="./js/fuction.js "></script>
