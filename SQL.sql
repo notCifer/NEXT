@@ -1,0 +1,29 @@
+USE NEXTPOINT;
+SHOW TABLES;
+SELECT * FROM PESSOA;
+SELECT * FROM ROTA;
+
+SELECT * FROM USUARIO;
+INSERT ONIBUS(placa,tipo) VALUES('ADS123',0);
+INSERT ONIBUS(placa,tipo) VALUES('ADS456',1);
+INSERT ONIBUS(placa,tipo) VALUES('ADS789',2);
+SELECT * FROM ONIBUS;
+
+INSERT PARADA(nome) VALUES ('Terminal Sitio Cercado');
+INSERT PARADA(nome) VALUES ('Chapinhal');
+INSERT PARADA(nome) VALUES ('Terminal Pinheirinho');
+INSERT PARADA(nome) VALUES ('Terminal Capão Raso');
+INSERT PARADA(nome) VALUES ('Agua Verde');
+INSERT PARADA(nome) VALUES ('Westephalen');
+INSERT PARADA(nome) VALUES ('Guadalupe');
+SELECT * FROM PARADA;
+
+INSERT LINHA(nome,onibus_id)VALUES('Sitio Cercado (H)',1);
+SELECT * FROM LINHA;
+
+INSERT LINHA_PARADAS(linha_id,paradas_id)VALUES(1,1);
+INSERT LINHA_PARADAS(linha_id,paradas_id)VALUES(1,2);
+INSERT LINHA_PARADAS(linha_id,paradas_id)VALUES(1,3);
+INSERT LINHA_PARADAS(linha_id,paradas_id)VALUES(1,4);
+INSERT LINHA_PARADAS(linha_id,paradas_id)VALUES(1,5);
+SELECT * FROM LINHA_PARADAS;
