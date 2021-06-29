@@ -11,7 +11,7 @@ INFORMAÇÕES
 -  Modifique o caminho do banco de dados especificado a na " spring.datasource.url=jdbc:mysql://localhost:3307/NEXTPOINT " e simplesmente altere a porta 3307, para a porta configurada em seu MYSQL. Porta padrão(3306).
 -  Dentro do MYSQL crie uma database chamada "NEXTPOINT".
 -  A aplicação está pronta para ser iniciada.
--  Após criar a database e para garatir total funcionamento da aplicação basta executar a linha de comando no arquivo SQL, encontra na pasta do projeto.
+-  Após criar a database e para garatir total funcionamento da aplicação basta executar a linha de comando no arquivo SQL, encontrado na pasta do projeto.
 
 
 OBSERVAÇÃO
