@@ -29,6 +29,8 @@ import com.app.repositories.RotaRepository;
 import com.app.repositories.UsuarioRepository;
 import com.app.services.ServicesTools;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -97,9 +99,6 @@ public class PaginaController {
             ModelAndView mav = new ModelAndView("page");
             mav.addObject("historicos", listDTO);
 
-
-
-
             return mav;
         }
         return null;
@@ -120,8 +119,8 @@ public class PaginaController {
     public String AddPessoa(@ModelAttribute PessoaFORM FORM, @RequestParam("myfile") MultipartFile myfile,
             Errors errors) throws IOException {
 
-        File fi = new File(
-                "C:/Users/Allan/Desktop/WORKSPACE/NextPoint/src/main/resources/static/css/img/userimage.gif");
+        Resource resource = new ClassPathResource("userimage.gif");
+        File fi = resource.getFile();
         byte[] imagebyte = Files.readAllBytes(fi.toPath());
 
         Usuario logado = usuarioS.getLogado(usuarioR);
@@ -170,13 +169,12 @@ public class PaginaController {
         return "redirect:/nextpoint#CriarRota";
     }
 
-
     @GetMapping("/Rota/Delete/{id}")
-	public String deleteEmployee(@PathVariable (value = "id") long id) throws InterruptedException {
+    public String deleteEmployee(@PathVariable(value = "id") long id) throws InterruptedException {
         rotaR.deleteById(id);
-		return "redirect:/nextpoint#MinhasRotas";
-	}
-	
+        return "redirect:/nextpoint#MinhasRotas";
+    }
+
     // ------------------ MODEL ATRIBUTTES ------------------
 
     @ModelAttribute("historicoform")
@@ -208,8 +206,8 @@ public class PaginaController {
 
     @ModelAttribute("imagem")
     public String loadImage() throws IOException {
-        File fi = new File(
-                "C:/Users/Allan/Desktop/WORKSPACE/NextPoint/src/main/resources/static/css/img/userimage.gif");
+        Resource resource = new ClassPathResource("userimage.gif");
+        File fi = resource.getFile();
         byte[] bytes = Files.readAllBytes(fi.toPath());
         String imageBase64 = Base64.getEncoder().encodeToString(bytes);
         return imageBase64;
