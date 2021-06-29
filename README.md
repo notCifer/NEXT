@@ -23,3 +23,7 @@ OBSERVAÇÃO
 
 
 Aproveite o protótipo, para um grande projeto que virá!!
+
+DEVS
+- Allan Patrick 
+- Alexandre Nardelli
