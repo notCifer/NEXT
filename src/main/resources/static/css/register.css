@@ -115,7 +115,7 @@ body {
 
 .Form-box {
     width: 380px;
-    height: 410px;
+    height: 450px;
     position: relative;
     margin: 6% auto;
     border-radius: 15px;
@@ -215,7 +215,7 @@ body {
 .span {
     font-size: 12px;
     position: fixed;
-    top: 390px;
+    top: 420px;
     right: 110px;
 }
 
