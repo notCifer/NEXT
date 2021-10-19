@@ -2,7 +2,8 @@ Olá seja Bem vindo ao projeto de TCC NextPoint.
 
 REQUISITOS
 - MYSQL
-- JDK 11 ou superior.
+- JDK 16 ou superior.
+- Se for utilizar na versão JDK 11, basta alterar a versão no arquivo pom.xml.
 
 
 INFORMAÇÕES
